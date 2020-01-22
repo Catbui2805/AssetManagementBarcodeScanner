@@ -85,7 +85,6 @@ class QRScannerViewController: UIViewController {
         
         // Move the message label and top bar to the front
         view.bringSubviewToFront(messageLabel)
-        view.bringSubviewToFront(topbar)
         
         // Initialize QR Code Frame to highlight the QR code
         qrCodeFrameView = UIView(frame: CGRect(x: 20, y: (view.bounds.height / 2) - 150, width: view.bounds.width - (20 * 2), height: 300))

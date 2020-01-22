@@ -38,6 +38,11 @@ class HomeViewController: UIViewController {
         let vc = QRScannerViewController()
         vc.title = "Scanner"
         navigationController?.pushViewController(vc, animated: true)
+        
+//        // MARK:  generator QR code
+//        let vc = GeneratorQRCodeViewController()
+//        navigationController?.pushViewController(vc, animated: true)
+
     }
 }
 

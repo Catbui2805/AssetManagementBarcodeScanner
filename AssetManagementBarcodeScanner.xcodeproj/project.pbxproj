@@ -3,11 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		767D73AB71BDDA466220E4EA /* Pods_AssetManagementBarcodeScanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 170CCB0CBD1B4AA4C5E96F67 /* Pods_AssetManagementBarcodeScanner.framework */; };
+		F5040D2123D95EC60087C1FD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F5040D2323D95EC60087C1FD /* Localizable.strings */; };
+		F5040D2B23D963250087C1FD /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5040D2A23D963250087C1FD /* String+Localized.swift */; };
+		F5040D2E23D96BBB0087C1FD /* Translate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5040D2D23D96BBB0087C1FD /* Translate.swift */; };
 		F5BEBDBA23D8C05800332623 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BEBDB923D8C05800332623 /* QRScannerViewController.swift */; };
 		F5D6182E23D6DF4C00054D9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D6182D23D6DF4C00054D9F /* AppDelegate.swift */; };
 		F5D6183023D6DF4C00054D9F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D6182F23D6DF4C00054D9F /* SceneDelegate.swift */; };
@@ -18,6 +21,7 @@
 		F5D6185A23D6E00200054D9F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D6185923D6E00200054D9F /* HomeViewController.swift */; };
 		F5D6185C23D6E16F00054D9F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D6185B23D6E16F00054D9F /* Constants.swift */; };
 		F5E3B61A23D8DA6E00219514 /* GeneratorQRCodeBarCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E3B61923D8DA6E00219514 /* GeneratorQRCodeBarCodeViewController.swift */; };
+		F5E88FF223D96D0900811159 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E88FF123D96D0900811159 /* Language.swift */; };
 		F86E402286D9602AAB24D0B0 /* Pods_AssetManagementBarcodeScannerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FAE107135F64A465E9058D /* Pods_AssetManagementBarcodeScannerTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +42,10 @@
 		170CCB0CBD1B4AA4C5E96F67 /* Pods_AssetManagementBarcodeScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AssetManagementBarcodeScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		270541AC9D7FC78684B4519A /* Pods-AssetManagementBarcodeScanner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AssetManagementBarcodeScanner.release.xcconfig"; path = "Target Support Files/Pods-AssetManagementBarcodeScanner/Pods-AssetManagementBarcodeScanner.release.xcconfig"; sourceTree = "<group>"; };
 		90FAE107135F64A465E9058D /* Pods_AssetManagementBarcodeScannerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AssetManagementBarcodeScannerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5040D2223D95EC60087C1FD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F5040D2423D95EE00087C1FD /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F5040D2A23D963250087C1FD /* String+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
+		F5040D2D23D96BBB0087C1FD /* Translate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translate.swift; sourceTree = "<group>"; };
 		F5BEBDB923D8C05800332623 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		F5D6182A23D6DF4C00054D9F /* AssetManagementBarcodeScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AssetManagementBarcodeScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5D6182D23D6DF4C00054D9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +60,7 @@
 		F5D6185923D6E00200054D9F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F5D6185B23D6E16F00054D9F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F5E3B61923D8DA6E00219514 /* GeneratorQRCodeBarCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorQRCodeBarCodeViewController.swift; sourceTree = "<group>"; };
+		F5E88FF123D96D0900811159 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +101,30 @@
 				0B0F7C11E15394CA6C5F5016 /* Pods-AssetManagementBarcodeScannerTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		F5040D2623D960380087C1FD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F5040D2723D960930087C1FD /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F5040D2C23D96B640087C1FD /* Languages */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		F5040D2C23D96B640087C1FD /* Languages */ = {
+			isa = PBXGroup;
+			children = (
+				F5E88FF123D96D0900811159 /* Language.swift */,
+				F5040D2D23D96BBB0087C1FD /* Translate.swift */,
+			);
+			path = Languages;
 			sourceTree = "<group>";
 		};
 		F5D6182123D6DF4C00054D9F = {
@@ -155,6 +188,7 @@
 		F5D6185423D6DF6800054D9F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F5040D2323D95EC60087C1FD /* Localizable.strings */,
 				F5D6183923D6DF4D00054D9F /* Assets.xcassets */,
 				F5D6183B23D6DF4D00054D9F /* LaunchScreen.storyboard */,
 			);
@@ -191,7 +225,10 @@
 		F5D6185823D6DFDE00054D9F /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
+				F5040D2723D960930087C1FD /* Helpers */,
+				F5040D2623D960380087C1FD /* Views */,
 				F5D6185B23D6E16F00054D9F /* Constants.swift */,
+				F5040D2A23D963250087C1FD /* String+Localized.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -270,6 +307,7 @@
 			knownRegions = (
 				en,
 				Base,
+				vi,
 			);
 			mainGroup = F5D6182123D6DF4C00054D9F;
 			productRefGroup = F5D6182B23D6DF4C00054D9F /* Products */;
@@ -288,6 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5D6183D23D6DF4D00054D9F /* LaunchScreen.storyboard in Resources */,
+				F5040D2123D95EC60087C1FD /* Localizable.strings in Resources */,
 				F5D6183A23D6DF4D00054D9F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,13 +392,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5040D2B23D963250087C1FD /* String+Localized.swift in Sources */,
 				F5D6185C23D6E16F00054D9F /* Constants.swift in Sources */,
 				F5D6183823D6DF4C00054D9F /* AssetManagementBarcodeScanner.xcdatamodeld in Sources */,
 				F5BEBDBA23D8C05800332623 /* QRScannerViewController.swift in Sources */,
+				F5040D2E23D96BBB0087C1FD /* Translate.swift in Sources */,
 				F5D6182E23D6DF4C00054D9F /* AppDelegate.swift in Sources */,
 				F5D6183023D6DF4C00054D9F /* SceneDelegate.swift in Sources */,
 				F5E3B61A23D8DA6E00219514 /* GeneratorQRCodeBarCodeViewController.swift in Sources */,
 				F5D6185A23D6E00200054D9F /* HomeViewController.swift in Sources */,
+				F5E88FF223D96D0900811159 /* Language.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,6 +424,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		F5040D2323D95EC60087C1FD /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F5040D2223D95EC60087C1FD /* en */,
+				F5040D2423D95EE00087C1FD /* vi */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		F5D6183B23D6DF4D00054D9F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -397,6 +448,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -457,6 +509,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

@@ -13,9 +13,13 @@ enum Constant {
         
     }
     enum Strings {
-        static let hello = NSLocalizedString("hello", comment: "")
+        
     }
     enum Colors {
         
+    }
+    
+    enum UserDefaultKey {
+        static let LANGUAGEKEY = "languageKey"
     }
 }

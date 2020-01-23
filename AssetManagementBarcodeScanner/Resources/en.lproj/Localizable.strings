@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings
+  AssetManagementBarcodeScanner
+
+  Created by Nguyen Tran Cong on 1/23/20.
+  Copyright © 2020 Nguyen Tran. All rights reserved.
+*/
+
+// home
+"home" = "Home";
+
+// catagory
+"category" = "Category";
+
+// scanner
+"scanner" = "Scanner";
+
+
+// other
+"setting" = "Setting";
+
+
+// Language
+"vi" = "Vietnamese";
+"en" = "English";

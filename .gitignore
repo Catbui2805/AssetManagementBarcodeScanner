@@ -88,3 +88,11 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+Pods/Target Support Files/Pods-AssetManagementBarcodeScanner/Pods-AssetManagementBarcodeScanner-Info.plist
+Pods/Target Support Files/Pods-AssetManagementBarcodeScanner/Pods-AssetManagementBarcodeScanner-umbrella.h
+Pods/Target Support Files/Pods-AssetManagementBarcodeScanner/Pods-AssetManagementBarcodeScanner.modulemap
+Pods/Target Support Files/Pods-AssetManagementBarcodeScannerTests/Pods-AssetManagementBarcodeScannerTests-acknowledgements.markdown
+Pods/Target Support Files/Pods-AssetManagementBarcodeScannerTests/Pods-AssetManagementBarcodeScannerTests-acknowledgements.plist
+Pods/Target Support Files/Pods-AssetManagementBarcodeScannerTests/Pods-AssetManagementBarcodeScannerTests-Info.plist
+Pods/Target Support Files/Pods-AssetManagementBarcodeScannerTests/Pods-AssetManagementBarcodeScannerTests-umbrella.h
+Pods/Target Support Files/Pods-AssetManagementBarcodeScannerTests/Pods-AssetManagementBarcodeScannerTests.modulemap

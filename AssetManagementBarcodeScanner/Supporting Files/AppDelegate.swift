@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let home = HomeViewController()
         home.view.backgroundColor = .white
         let navigationController = UINavigationController(rootViewController: home)
+        home.title = "\(Translate.Shared.home())"
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         

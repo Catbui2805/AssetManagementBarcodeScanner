@@ -16,10 +16,13 @@
 "scanner" = "Scanner";
 
 
-// other
+// setting
 "setting" = "Setting";
+"language" = "Language";
+"app_version" = "App version";
 
 
 // Language
 "vi" = "Vietnamese";
 "en" = "English";
+

@@ -27,12 +27,10 @@ enum LanguageCode {
             return "vi"
         case .EN:
             return "en"
-
         }
     }
+    
 }
-
-
 
 class LanguageManager {
     
@@ -41,7 +39,7 @@ class LanguageManager {
     private var language: String = LanguageCode.VI.code()
     
     private init() {
-        guard let languageCode = UserDefaults.standard.string(forKey: Constant.UserDefaultKey.LANGUAGEKEY) else { return }
+        guard let languageCode = UserDefaults.standard.string(forKey: Constants.UserDefaultKey.LANGUAGEKEY) else { return }
         
         self.language = languageCode
         

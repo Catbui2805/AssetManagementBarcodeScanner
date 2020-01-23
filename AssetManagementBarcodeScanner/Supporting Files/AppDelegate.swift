@@ -19,11 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        let home = HomeViewController()
-        home.view.backgroundColor = .white
-        let navigationController = UINavigationController(rootViewController: home)
-        home.title = "\(Translate.Shared.home())"
-        window?.rootViewController = navigationController
+        let tabBar = TabBarController()
+        
+        window?.rootViewController = tabBar
         window?.makeKeyAndVisible()
         
         return true

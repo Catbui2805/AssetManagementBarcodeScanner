@@ -11,6 +11,16 @@
 		F5040D2123D95EC60087C1FD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F5040D2323D95EC60087C1FD /* Localizable.strings */; };
 		F5040D2B23D963250087C1FD /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5040D2A23D963250087C1FD /* String+Localized.swift */; };
 		F5040D2E23D96BBB0087C1FD /* Translate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5040D2D23D96BBB0087C1FD /* Translate.swift */; };
+		F59D560223D9DBF6003A967B /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D560123D9DBF6003A967B /* SettingViewModel.swift */; };
+		F59D560423D9DC1F003A967B /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D560323D9DC1F003A967B /* SettingModel.swift */; };
+		F59D560723D9E13F003A967B /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D560623D9E13F003A967B /* SettingCell.swift */; };
+		F59D560923D9E478003A967B /* RatioScreenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D560823D9E478003A967B /* RatioScreenManager.swift */; };
+		F59D560B23D9EC59003A967B /* UIColor+FromHex.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D560A23D9EC59003A967B /* UIColor+FromHex.swift */; };
+		F59D560D23D9ECAF003A967B /* String+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D560C23D9ECAF003A967B /* String+Color.swift */; };
+		F59D561223DA048B003A967B /* LanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D561123DA048B003A967B /* LanguageViewController.swift */; };
+		F59D561423DA075D003A967B /* LanguageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D561323DA075D003A967B /* LanguageModel.swift */; };
+		F59D561623DA0779003A967B /* LanguageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D561523DA0779003A967B /* LanguageViewModel.swift */; };
+		F59D561923DA0E74003A967B /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D561823DA0E74003A967B /* LanguageCell.swift */; };
 		F5BEBDBA23D8C05800332623 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BEBDB923D8C05800332623 /* QRScannerViewController.swift */; };
 		F5D6182E23D6DF4C00054D9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D6182D23D6DF4C00054D9F /* AppDelegate.swift */; };
 		F5D6183023D6DF4C00054D9F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D6182F23D6DF4C00054D9F /* SceneDelegate.swift */; };
@@ -22,6 +32,11 @@
 		F5D6185C23D6E16F00054D9F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D6185B23D6E16F00054D9F /* Constants.swift */; };
 		F5E3B61A23D8DA6E00219514 /* GeneratorQRCodeBarCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E3B61923D8DA6E00219514 /* GeneratorQRCodeBarCodeViewController.swift */; };
 		F5E88FF223D96D0900811159 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E88FF123D96D0900811159 /* Language.swift */; };
+		F5E88FF423D96DF200811159 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E88FF323D96DF200811159 /* TabBarController.swift */; };
+		F5E88FF923D96F7300811159 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E88FF823D96F7300811159 /* CategoryViewController.swift */; };
+		F5E88FFB23D96F8500811159 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E88FFA23D96F8500811159 /* ScannerViewController.swift */; };
+		F5E88FFD23D96F9B00811159 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E88FFC23D96F9B00811159 /* SettingViewController.swift */; };
+		F5E8900023D9740700811159 /* TabBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E88FFF23D9740700811159 /* TabBarModel.swift */; };
 		F86E402286D9602AAB24D0B0 /* Pods_AssetManagementBarcodeScannerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FAE107135F64A465E9058D /* Pods_AssetManagementBarcodeScannerTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +61,16 @@
 		F5040D2423D95EE00087C1FD /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F5040D2A23D963250087C1FD /* String+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
 		F5040D2D23D96BBB0087C1FD /* Translate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translate.swift; sourceTree = "<group>"; };
+		F59D560123D9DBF6003A967B /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		F59D560323D9DC1F003A967B /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
+		F59D560623D9E13F003A967B /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
+		F59D560823D9E478003A967B /* RatioScreenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatioScreenManager.swift; sourceTree = "<group>"; };
+		F59D560A23D9EC59003A967B /* UIColor+FromHex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+FromHex.swift"; sourceTree = "<group>"; };
+		F59D560C23D9ECAF003A967B /* String+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Color.swift"; sourceTree = "<group>"; };
+		F59D561123DA048B003A967B /* LanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewController.swift; sourceTree = "<group>"; };
+		F59D561323DA075D003A967B /* LanguageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageModel.swift; sourceTree = "<group>"; };
+		F59D561523DA0779003A967B /* LanguageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewModel.swift; sourceTree = "<group>"; };
+		F59D561823DA0E74003A967B /* LanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
 		F5BEBDB923D8C05800332623 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		F5D6182A23D6DF4C00054D9F /* AssetManagementBarcodeScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AssetManagementBarcodeScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5D6182D23D6DF4C00054D9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +86,11 @@
 		F5D6185B23D6E16F00054D9F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F5E3B61923D8DA6E00219514 /* GeneratorQRCodeBarCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorQRCodeBarCodeViewController.swift; sourceTree = "<group>"; };
 		F5E88FF123D96D0900811159 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		F5E88FF323D96DF200811159 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		F5E88FF823D96F7300811159 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		F5E88FFA23D96F8500811159 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
+		F5E88FFC23D96F9B00811159 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		F5E88FFF23D9740700811159 /* TabBarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +136,10 @@
 		F5040D2623D960380087C1FD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F5E88FFE23D973EC00811159 /* TabBar */,
+				F59D560823D9E478003A967B /* RatioScreenManager.swift */,
+				F59D560A23D9EC59003A967B /* UIColor+FromHex.swift */,
+				F59D560C23D9ECAF003A967B /* String+Color.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -125,6 +159,33 @@
 				F5040D2D23D96BBB0087C1FD /* Translate.swift */,
 			);
 			path = Languages;
+			sourceTree = "<group>";
+		};
+		F59D560523D9E116003A967B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F59D560623D9E13F003A967B /* SettingCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		F59D560E23DA03AB003A967B /* Language */ = {
+			isa = PBXGroup;
+			children = (
+				F59D561723DA0E3D003A967B /* Cells */,
+				F59D561123DA048B003A967B /* LanguageViewController.swift */,
+				F59D561523DA0779003A967B /* LanguageViewModel.swift */,
+				F59D561323DA075D003A967B /* LanguageModel.swift */,
+			);
+			path = Language;
+			sourceTree = "<group>";
+		};
+		F59D561723DA0E3D003A967B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F59D561823DA0E74003A967B /* LanguageCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		F5D6182123D6DF4C00054D9F = {
@@ -170,8 +231,10 @@
 		F5D6185223D6DF5A00054D9F /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				F5E3B61423D8D71800219514 /* GeneratorQRCode */,
 				F5D6185623D6DFC700054D9F /* Home */,
+				F5E88FF523D96F1700811159 /* Category */,
+				F5E88FF723D96F2800811159 /* Scanner */,
+				F5E88FF623D96F2000811159 /* Setting */,
 				F5D6185823D6DFDE00054D9F /* Extentions */,
 				F5D6185723D6DFD600054D9F /* Services */,
 			);
@@ -239,6 +302,44 @@
 				F5E3B61923D8DA6E00219514 /* GeneratorQRCodeBarCodeViewController.swift */,
 			);
 			path = GeneratorQRCode;
+			sourceTree = "<group>";
+		};
+		F5E88FF523D96F1700811159 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				F5E88FF823D96F7300811159 /* CategoryViewController.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		F5E88FF623D96F2000811159 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				F59D560E23DA03AB003A967B /* Language */,
+				F59D560523D9E116003A967B /* Cells */,
+				F5E88FFC23D96F9B00811159 /* SettingViewController.swift */,
+				F59D560123D9DBF6003A967B /* SettingViewModel.swift */,
+				F59D560323D9DC1F003A967B /* SettingModel.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		F5E88FF723D96F2800811159 /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				F5E3B61423D8D71800219514 /* GeneratorQRCode */,
+				F5E88FFA23D96F8500811159 /* ScannerViewController.swift */,
+			);
+			path = Scanner;
+			sourceTree = "<group>";
+		};
+		F5E88FFE23D973EC00811159 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				F5E88FF323D96DF200811159 /* TabBarController.swift */,
+				F5E88FFF23D9740700811159 /* TabBarModel.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -393,13 +494,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5040D2B23D963250087C1FD /* String+Localized.swift in Sources */,
+				F59D561423DA075D003A967B /* LanguageModel.swift in Sources */,
 				F5D6185C23D6E16F00054D9F /* Constants.swift in Sources */,
+				F5E88FF423D96DF200811159 /* TabBarController.swift in Sources */,
 				F5D6183823D6DF4C00054D9F /* AssetManagementBarcodeScanner.xcdatamodeld in Sources */,
+				F5E88FF923D96F7300811159 /* CategoryViewController.swift in Sources */,
+				F5E88FFD23D96F9B00811159 /* SettingViewController.swift in Sources */,
 				F5BEBDBA23D8C05800332623 /* QRScannerViewController.swift in Sources */,
 				F5040D2E23D96BBB0087C1FD /* Translate.swift in Sources */,
+				F59D561223DA048B003A967B /* LanguageViewController.swift in Sources */,
+				F59D561623DA0779003A967B /* LanguageViewModel.swift in Sources */,
+				F59D560723D9E13F003A967B /* SettingCell.swift in Sources */,
 				F5D6182E23D6DF4C00054D9F /* AppDelegate.swift in Sources */,
+				F5E8900023D9740700811159 /* TabBarModel.swift in Sources */,
+				F59D560D23D9ECAF003A967B /* String+Color.swift in Sources */,
 				F5D6183023D6DF4C00054D9F /* SceneDelegate.swift in Sources */,
+				F59D560923D9E478003A967B /* RatioScreenManager.swift in Sources */,
+				F59D560B23D9EC59003A967B /* UIColor+FromHex.swift in Sources */,
+				F59D561923DA0E74003A967B /* LanguageCell.swift in Sources */,
+				F59D560223D9DBF6003A967B /* SettingViewModel.swift in Sources */,
 				F5E3B61A23D8DA6E00219514 /* GeneratorQRCodeBarCodeViewController.swift in Sources */,
+				F59D560423D9DC1F003A967B /* SettingModel.swift in Sources */,
+				F5E88FFB23D96F8500811159 /* ScannerViewController.swift in Sources */,
 				F5D6185A23D6E00200054D9F /* HomeViewController.swift in Sources */,
 				F5E88FF223D96D0900811159 /* Language.swift in Sources */,
 			);

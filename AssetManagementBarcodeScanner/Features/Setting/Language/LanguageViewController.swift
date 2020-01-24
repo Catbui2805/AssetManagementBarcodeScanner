@@ -31,6 +31,31 @@ class LanguageViewController: UIViewController {
         setupViews()
     }
     
+    
+    @objc func tappedChangeLanguage() {
+        let languageCode = languageViewModel.getItemSeletedCode()
+        UserDefaults.standard.set(languageCode, forKey: Constants.UserDefaultKey.LANGUAGEKEY)
+        LanguageManager.Shared.setLanguage(languageCode)
+        restartApplication()
+    }
+    
+    func restartApplication () {
+        
+        let tabBar = TabBarController()
+        
+        guard
+            let window = UIApplication.shared.keyWindow,
+            let rootViewController = window.rootViewController
+            else { return }
+        
+        tabBar.view.frame = rootViewController.view.frame
+        tabBar.view.layoutIfNeeded()
+        
+        UIView.transition(with: window, duration: 0.3, options: .curveEaseIn, animations: {
+            window.rootViewController = tabBar
+        })
+    }
+    
 }
 
 private extension LanguageViewController {
@@ -58,8 +83,14 @@ private extension LanguageViewController {
     }
     
     func setupViews() {
+        setupNavigationController()
         setupCollectionView()
         configureRegister()
+    }
+    
+    func setupNavigationController() {
+        let rightBarButtonItem = UIBarButtonItem(title: Translate.Shared.ok(), style: .plain, target: self, action: #selector(tappedChangeLanguage))
+        navigationItem.rightBarButtonItem = rightBarButtonItem
     }
     
     func setupCollectionView() {

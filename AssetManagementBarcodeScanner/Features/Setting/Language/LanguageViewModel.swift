@@ -33,4 +33,12 @@ class LanguageViewModel {
         }
     }
     
+    func getItemSeletedCode() -> String {
+        guard let item = languageList.filter({$0.isSelected == true}).first else {
+            return LanguageCode.VI.code()
+        }
+        
+        return item.code
+    }
+    
 }

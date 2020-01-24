@@ -47,5 +47,8 @@ extension Translate {
         return "app_version".localized()
     }
 
+    func ok() -> String {
+        return "ok".localized()
+    }
 }
 

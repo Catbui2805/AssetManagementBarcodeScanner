@@ -27,6 +27,7 @@
 		F59D562323DB001C003A967B /* CreateCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D562223DB001C003A967B /* CreateCategoryViewController.swift */; };
 		F59D562623DC0383003A967B /* CategoryServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D562523DC0383003A967B /* CategoryServices.swift */; };
 		F59D562A23DC1444003A967B /* ImangeLocalStorageServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D562923DC1444003A967B /* ImangeLocalStorageServices.swift */; };
+		F59D562F23DC3DC3003A967B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D562E23DC3DC3003A967B /* DataManager.swift */; };
 		F5BEBDBA23D8C05800332623 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BEBDB923D8C05800332623 /* QRScannerViewController.swift */; };
 		F5D6182E23D6DF4C00054D9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D6182D23D6DF4C00054D9F /* AppDelegate.swift */; };
 		F5D6183023D6DF4C00054D9F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D6182F23D6DF4C00054D9F /* SceneDelegate.swift */; };
@@ -83,6 +84,7 @@
 		F59D562223DB001C003A967B /* CreateCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCategoryViewController.swift; sourceTree = "<group>"; };
 		F59D562523DC0383003A967B /* CategoryServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryServices.swift; sourceTree = "<group>"; };
 		F59D562923DC1444003A967B /* ImangeLocalStorageServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImangeLocalStorageServices.swift; sourceTree = "<group>"; };
+		F59D562E23DC3DC3003A967B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		F5BEBDB923D8C05800332623 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		F5D6182A23D6DF4C00054D9F /* AssetManagementBarcodeScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AssetManagementBarcodeScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5D6182D23D6DF4C00054D9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -224,6 +226,30 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		F59D562B23DC3D63003A967B /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				F59D562E23DC3DC3003A967B /* DataManager.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		F59D562C23DC3D74003A967B /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				F59D562B23DC3D63003A967B /* Data */,
+				F59D562923DC1444003A967B /* ImangeLocalStorageServices.swift */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		F59D562D23DC3D8A003A967B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		F5D6182123D6DF4C00054D9F = {
 			isa = PBXGroup;
 			children = (
@@ -317,7 +343,8 @@
 		F5D6185723D6DFD600054D9F /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				F59D562923DC1444003A967B /* ImangeLocalStorageServices.swift */,
+				F59D562D23DC3D8A003A967B /* Network */,
+				F59D562C23DC3D74003A967B /* Local */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -554,6 +581,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F59D562A23DC1444003A967B /* ImangeLocalStorageServices.swift in Sources */,
+				F59D562F23DC3DC3003A967B /* DataManager.swift in Sources */,
 				F5040D2B23D963250087C1FD /* String+Localized.swift in Sources */,
 				F59D562623DC0383003A967B /* CategoryServices.swift in Sources */,
 				F59D561423DA075D003A967B /* LanguageModel.swift in Sources */,

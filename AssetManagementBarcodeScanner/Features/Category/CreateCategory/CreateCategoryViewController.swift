@@ -51,8 +51,8 @@ class CreateCategoryViewController: UIViewController {
     var category: CategoryModel?
     var type: CategoryType = .Create
     var addCategory: ((CategoryModel) -> Void)?
-        
-    private var categoryServices: CategoryImageSeviceable!
+    
+    private var categoryServices: CategoryServicesable!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,21 +73,21 @@ class CreateCategoryViewController: UIViewController {
         } else {
             
             let uuid = category?.uuid ?? UUID().uuidString
-            let categoryModel = CategoryModel(uuid, tfTitle.text ?? "not content", uuid, ivIcon.image , false)
+            let categoryModel = CategoryModel(
+                uuid,
+                tfTitle.text ?? "not content",
+                tfTitle.text ?? "not content",
+                ivIcon.image ,
+                false)
             
             addCategory?(categoryModel)
             navigationController?.popViewController(animated: true)
             
             if type == .Edit {
-                categoryServices.updateImageLocal(categoryModel)
+                categoryServices.update(categoryModel)
             } else {
-                categoryServices.saveImageLocal(categoryModel)
+                categoryServices.save(categoryModel)
             }
-            
-//            let realm = try! Realm()
-//            try! realm.write {
-//                realm.add(categoryModel)
-//            }
         }
     }
     
@@ -132,7 +132,6 @@ private extension CreateCategoryViewController {
         let rightButton = UIBarButtonItem(title: Translate.Shared.save(), style: .plain, target: self, action: #selector(tappedToSave))
         navigationItem.rightBarButtonItem = rightButton
     }
-    
     
     func setupImageViewIcon() {
         view.addSubview(ivIcon)

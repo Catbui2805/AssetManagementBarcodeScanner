@@ -18,7 +18,7 @@ class TabBarController: UITabBarController {
 
 private extension TabBarController {
     func setupViews() {
-        guard let bundleName = Bundle.main.infoDictionary!["CFBundleName"] as? String else { return }
+        guard (Bundle.main.infoDictionary!["CFBundleName"] as? String) != nil else { return }
         
         self.viewControllers = getTabBarList().compactMap({ item in
             

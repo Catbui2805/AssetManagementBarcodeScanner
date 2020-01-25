@@ -13,7 +13,7 @@ class CategoryViewController: UIViewController {
     static let identifier: String = "CategoryViewController"
     
     private var categoryViewModel: CategoryViewModel!
-    private var categoryServices: CategoryImageSeviceable!
+    private var categoryServices: CategoryServicesable!
     
     private let cvCategories: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
@@ -25,6 +25,20 @@ class CategoryViewController: UIViewController {
         return cv
     }()
     
+    private let btAddCategory: UIButton = {
+        let bt = UIButton()
+        bt.translatesAutoresizingMaskIntoConstraints = false
+        bt.setImage(UIImage(named: "ic_plus"), for: .normal)
+        bt.setTitle(Translate.Shared.create_category(), for: .normal)
+        bt.titleLabel?.font = Constants.Fonts.regular16
+        bt.titleLabel?.textAlignment = .center
+        bt.setTitleColor(.blue, for: .normal)
+        bt.backgroundColor = Constants.Colors.color222222.withAlphaComponent(0.08)
+        bt.layer.masksToBounds = true
+        bt.layer.cornerRadius = 16.adjusted
+        return bt
+    }()
+    
     var rightBarButtonItem = UIBarButtonItem()
     
     var shouldEdit: Bool = false
@@ -32,9 +46,20 @@ class CategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         categoryServices = CategoryServices()
-        categoryViewModel = CategoryViewModel(getCategories())
+        categoryViewModel = CategoryViewModel(categoryServices.getAllItem())
         setupViews()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if categoryViewModel.getNumberOfCategories() < 1 {
+            cvCategories.isHidden = true
+            btAddCategory.isHidden = false
+        } else {
+            cvCategories.isHidden = false
+            btAddCategory.isHidden = true
+        }
     }
     
     @objc func tappedEdit() {
@@ -42,48 +67,35 @@ class CategoryViewController: UIViewController {
             rightBarButtonItem.title = Translate.Shared.edit()
         } else {
             rightBarButtonItem.title = Translate.Shared.done()
+            if categoryViewModel.getNumberOfCategories() < 1 {
+                tappedCreateCategory()
+            }
         }
         shouldEdit = !shouldEdit
+    }
+    
+    @objc func tappedCreateCategory() {
+        let vc = CreateCategoryViewController()
+        vc.hidesBottomBarWhenPushed = true
+        vc.title = Translate.Shared.create_category()
+        vc.type = .Create
+        vc.addCategory = { [weak self] item in
+            self?.categoryViewModel.addNewItem(item)
+            self?.cvCategories.reloadData()
+            self?.cvCategories.isHidden = false
+            self?.btAddCategory.isHidden = true
+        }
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
 private extension CategoryViewController {
     
-    // MARK:  Get some data for category
-    
-    func getCategories() -> [CategoryModel] {
-        var categories: [CategoryModel] = []
-        let pc = CategoryModel(UUID().uuidString, "PC", "ic_pc_color", nil, false)
-        categories.append(pc)
-        
-        let laptop = CategoryModel(UUID().uuidString, "Laptop", "ic_laptop",nil, false)
-        categories.append(laptop)
-        
-        let monitor = CategoryModel(UUID().uuidString, "Monitor", "ic_monitor", nil, false)
-        categories.append(monitor)
-        
-        let phone = CategoryModel(UUID().uuidString, "Devices Phone", "ic_phone", nil, false)
-        categories.append(phone)
-        
-        let keyboard = CategoryModel(UUID().uuidString, "Keyboard", "ic_keyboard", nil, false)
-        categories.append(keyboard)
-        
-        let cable = CategoryModel(UUID().uuidString, "Cable", "ic_cable", nil, false)
-        categories.append(cable)
-        
-        let card = CategoryModel(UUID().uuidString, "Card", "ic_card", nil, false)
-        categories.append(card)
-        
-        let headset = CategoryModel(UUID().uuidString, "Headset", "ic_headset", nil, true)
-        categories.append(headset)
-        
-        return categories
-    }
-    
     func setupViews() {
         configureView()
         setupNavigation()
         setupCollectionViewCategory()
+        setupButtonAddCategory()
     }
     
     func configureView() {
@@ -102,6 +114,17 @@ private extension CategoryViewController {
         cvCategories.contentInset = .init(top: 40.adjusted, left: 20.adjusted, bottom: 40.adjusted, right: 20.adjusted)
         cvCategories.frame = view.frame
     }
+    
+    func setupButtonAddCategory() {
+        view.addSubview(btAddCategory)
+        btAddCategory.addTarget(self, action: #selector(tappedCreateCategory), for: .touchUpInside)
+        NSLayoutConstraint.activate([
+            btAddCategory.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            btAddCategory.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            btAddCategory.heightAnchor.constraint(equalToConstant: 250.adjusted),
+            btAddCategory.widthAnchor.constraint(equalToConstant: view.bounds.width - (50 * 2))
+        ])
+    }
 }
 
 extension CategoryViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -116,7 +139,8 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         }
         
         let data = categoryViewModel.getItem(indexPath.row)
-        cell.configureCell(data)
+        let category = categoryServices.getImageLocal(data)
+        cell.configureCell(category)
         
         return cell
     }
@@ -126,24 +150,14 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         if shouldEdit {
             let alert = UIAlertController(title: categoryViewModel.getItem(indexPath.row).name, message: Translate.Shared.would_you_like_to_choise_some_options_edit() , preferredStyle: .actionSheet)
             let create = UIAlertAction(title: Translate.Shared.create_category(), style: .default, handler: { (action) -> Void in
-                
-                let vc = CreateCategoryViewController()
-                vc.hidesBottomBarWhenPushed = true
-                vc.title = Translate.Shared.create_category()
-                vc.type = CategoryType.Create
-                vc.addCategory = { [weak self] item in
-                    self?.categoryViewModel.addNewItem(item)
-                    self?.cvCategories.reloadData()
-                }
-                self.navigationController?.pushViewController(vc, animated: true)
-                
+                self.tappedCreateCategory()
             })
             
             let edit = UIAlertAction(title: Translate.Shared.edit(), style: .default) { _ in
                 let vc = CreateCategoryViewController()
                 vc.hidesBottomBarWhenPushed = true
                 vc.title = Translate.Shared.edit()
-                vc.type = CategoryType.Edit
+                vc.type = .Edit
                 vc.category = self.categoryViewModel.getItem(indexPath.row)
                 vc.addCategory = { [weak self] item in
                     self?.categoryViewModel.editItem(indexPath.row, item)
@@ -153,9 +167,16 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
             }
             
             let delete = UIAlertAction(title: Translate.Shared.delete(), style: .default) { _ in
-                self.categoryServices.deleteImageLocal(self.categoryViewModel.getItem(indexPath.row))
+                self.categoryServices.delete(self.categoryViewModel.getItem(indexPath.row))
                 self.categoryViewModel.deleteItem(indexPath.row)
                 self.cvCategories.reloadData()
+                if self.categoryViewModel.getNumberOfCategories() < 1 {
+                    self.cvCategories.isHidden = true
+                    self.btAddCategory.isHidden = false
+                } else {
+                    self.cvCategories.isHidden = false
+                    self.btAddCategory.isHidden = true
+                }
             }
             let cancel = UIAlertAction(title: Translate.Shared.cancel(), style: .cancel, handler: nil)
             

@@ -63,7 +63,7 @@ private extension TabBarController {
         let scanner = TabBarModel(ScannerViewController.identifier,
                                   ScannerViewController(),
                                   Translate.Shared.scanner(),
-                                  "",
+                                  "ic_search_back",
                                   "",
                                   Translate.Shared.scanner())
         tabList.append(scanner)

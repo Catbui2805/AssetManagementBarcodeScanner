@@ -50,5 +50,60 @@ extension Translate {
     func ok() -> String {
         return "ok".localized()
     }
+    
+    func about() -> String {
+        return "about".localized()
+    }
+    
+    // MARK:  Category screen
+    
+    func add_image() -> String {
+        return "add_image".localized()
+    }
+    
+    func please_enter_name_category() -> String {
+        return "please_enter_name_category".localized()
+    }
+    
+    func name_category() -> String {
+        return "name_category".localized()
+    }
+    
+    func edit() -> String {
+        return "edit".localized()
+    }
+    
+    func edit_category() -> String {
+        return "edit_category".localized()
+    }
+    
+    func would_you_like_to_choise_some_options_edit() -> String {
+        return "would_you_like_to_choise_some_options_edit".localized()
+    }
+    
+    func create_category() -> String {
+        return "create_category".localized()
+    }
+    
+    func cancel() -> String {
+        return "cancel".localized()
+    }
+    
+    func delete() -> String {
+        return "delete".localized()
+    }
+    
+    func options() -> String {
+        return "options".localized()
+    }
+    
+    func save() -> String {
+        return "save".localized()
+    }
+    
+    func done() -> String {
+        return "done".localized()
+    }
+    
 }
 

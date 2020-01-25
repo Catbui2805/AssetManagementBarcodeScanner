@@ -7,6 +7,9 @@ target 'AssetManagementBarcodeScanner' do
 
   # Pods for AssetManagementBarcodeScanner
 
+  pod 'RealmSwift'
+  pod 'SkyFloatingLabelTextField'
+  
   target 'AssetManagementBarcodeScannerTests' do
     inherit! :search_paths
     # Pods for testing

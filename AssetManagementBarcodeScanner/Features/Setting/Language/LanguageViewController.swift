@@ -14,7 +14,6 @@ class LanguageViewController: UIViewController {
     
     let cvLanguage: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         layout.scrollDirection = .vertical
         layout.estimatedItemSize = CGSize(width: Constants.Screen.screenWidth, height: 50.adjusted)
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -51,7 +50,7 @@ class LanguageViewController: UIViewController {
         tabBar.view.frame = rootViewController.view.frame
         tabBar.view.layoutIfNeeded()
         
-        UIView.transition(with: window, duration: 0.3, options: .curveEaseIn, animations: {
+        UIView.transition(with: window, duration: 0, options: .curveEaseIn, animations: {
             window.rootViewController = tabBar
         })
     }

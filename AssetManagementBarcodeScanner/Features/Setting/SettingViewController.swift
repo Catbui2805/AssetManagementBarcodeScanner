@@ -14,7 +14,6 @@ class SettingViewController: UIViewController {
     
     let settingCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         layout.scrollDirection = .vertical
         layout.estimatedItemSize = CGSize(width: Constants.Screen.screenWidth, height: 50.adjusted)
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -56,6 +55,9 @@ private extension SettingViewController {
         
         let appVersion = SettingModel(1, Translate.Shared.app_version(), "", "1.0", "")
         settingList.append(appVersion)
+        
+        let about = SettingModel(2, Translate.Shared.about(), "", "", "")
+        settingList.append(about)
         
         return settingList
     }

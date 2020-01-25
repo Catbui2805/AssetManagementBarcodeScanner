@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,12 @@
 		F59D561423DA075D003A967B /* LanguageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D561323DA075D003A967B /* LanguageModel.swift */; };
 		F59D561623DA0779003A967B /* LanguageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D561523DA0779003A967B /* LanguageViewModel.swift */; };
 		F59D561923DA0E74003A967B /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D561823DA0E74003A967B /* LanguageCell.swift */; };
+		F59D561C23DAC898003A967B /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D561B23DAC898003A967B /* CategoryViewModel.swift */; };
+		F59D561E23DAC8AB003A967B /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D561D23DAC8AB003A967B /* CategoryModel.swift */; };
+		F59D562023DACC9F003A967B /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D561F23DACC9F003A967B /* CategoryCell.swift */; };
+		F59D562323DB001C003A967B /* CreateCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D562223DB001C003A967B /* CreateCategoryViewController.swift */; };
+		F59D562623DC0383003A967B /* CategoryServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D562523DC0383003A967B /* CategoryServices.swift */; };
+		F59D562A23DC1444003A967B /* ImangeLocalStorageServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D562923DC1444003A967B /* ImangeLocalStorageServices.swift */; };
 		F5BEBDBA23D8C05800332623 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BEBDB923D8C05800332623 /* QRScannerViewController.swift */; };
 		F5D6182E23D6DF4C00054D9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D6182D23D6DF4C00054D9F /* AppDelegate.swift */; };
 		F5D6183023D6DF4C00054D9F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D6182F23D6DF4C00054D9F /* SceneDelegate.swift */; };
@@ -71,6 +77,12 @@
 		F59D561323DA075D003A967B /* LanguageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageModel.swift; sourceTree = "<group>"; };
 		F59D561523DA0779003A967B /* LanguageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageViewModel.swift; sourceTree = "<group>"; };
 		F59D561823DA0E74003A967B /* LanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
+		F59D561B23DAC898003A967B /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
+		F59D561D23DAC8AB003A967B /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
+		F59D561F23DACC9F003A967B /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		F59D562223DB001C003A967B /* CreateCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCategoryViewController.swift; sourceTree = "<group>"; };
+		F59D562523DC0383003A967B /* CategoryServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryServices.swift; sourceTree = "<group>"; };
+		F59D562923DC1444003A967B /* ImangeLocalStorageServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImangeLocalStorageServices.swift; sourceTree = "<group>"; };
 		F5BEBDB923D8C05800332623 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		F5D6182A23D6DF4C00054D9F /* AssetManagementBarcodeScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AssetManagementBarcodeScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5D6182D23D6DF4C00054D9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -188,6 +200,30 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		F59D561A23DAC876003A967B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F59D561F23DACC9F003A967B /* CategoryCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		F59D562123DAFFCD003A967B /* CreateCategory */ = {
+			isa = PBXGroup;
+			children = (
+				F59D562223DB001C003A967B /* CreateCategoryViewController.swift */,
+			);
+			path = CreateCategory;
+			sourceTree = "<group>";
+		};
+		F59D562423DC0369003A967B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F59D562523DC0383003A967B /* CategoryServices.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		F5D6182123D6DF4C00054D9F = {
 			isa = PBXGroup;
 			children = (
@@ -281,6 +317,7 @@
 		F5D6185723D6DFD600054D9F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				F59D562923DC1444003A967B /* ImangeLocalStorageServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -307,7 +344,12 @@
 		F5E88FF523D96F1700811159 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				F59D562423DC0369003A967B /* Services */,
+				F59D562123DAFFCD003A967B /* CreateCategory */,
+				F59D561A23DAC876003A967B /* Cells */,
 				F5E88FF823D96F7300811159 /* CategoryViewController.swift */,
+				F59D561B23DAC898003A967B /* CategoryViewModel.swift */,
+				F59D561D23DAC8AB003A967B /* CategoryModel.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -353,6 +395,7 @@
 				F5D6182623D6DF4C00054D9F /* Sources */,
 				F5D6182723D6DF4C00054D9F /* Frameworks */,
 				F5D6182823D6DF4C00054D9F /* Resources */,
+				E1A043FF44D04EC120E445B2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -486,6 +529,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E1A043FF44D04EC120E445B2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AssetManagementBarcodeScanner/Pods-AssetManagementBarcodeScanner-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AssetManagementBarcodeScanner/Pods-AssetManagementBarcodeScanner-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AssetManagementBarcodeScanner/Pods-AssetManagementBarcodeScanner-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -493,9 +553,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F59D562A23DC1444003A967B /* ImangeLocalStorageServices.swift in Sources */,
 				F5040D2B23D963250087C1FD /* String+Localized.swift in Sources */,
+				F59D562623DC0383003A967B /* CategoryServices.swift in Sources */,
 				F59D561423DA075D003A967B /* LanguageModel.swift in Sources */,
 				F5D6185C23D6E16F00054D9F /* Constants.swift in Sources */,
+				F59D562023DACC9F003A967B /* CategoryCell.swift in Sources */,
+				F59D562323DB001C003A967B /* CreateCategoryViewController.swift in Sources */,
 				F5E88FF423D96DF200811159 /* TabBarController.swift in Sources */,
 				F5D6183823D6DF4C00054D9F /* AssetManagementBarcodeScanner.xcdatamodeld in Sources */,
 				F5E88FF923D96F7300811159 /* CategoryViewController.swift in Sources */,
@@ -509,12 +573,14 @@
 				F5E8900023D9740700811159 /* TabBarModel.swift in Sources */,
 				F59D560D23D9ECAF003A967B /* String+Color.swift in Sources */,
 				F5D6183023D6DF4C00054D9F /* SceneDelegate.swift in Sources */,
+				F59D561E23DAC8AB003A967B /* CategoryModel.swift in Sources */,
 				F59D560923D9E478003A967B /* RatioScreenManager.swift in Sources */,
 				F59D560B23D9EC59003A967B /* UIColor+FromHex.swift in Sources */,
 				F59D561923DA0E74003A967B /* LanguageCell.swift in Sources */,
 				F59D560223D9DBF6003A967B /* SettingViewModel.swift in Sources */,
 				F5E3B61A23D8DA6E00219514 /* GeneratorQRCodeBarCodeViewController.swift in Sources */,
 				F59D560423D9DC1F003A967B /* SettingModel.swift in Sources */,
+				F59D561C23DAC898003A967B /* CategoryViewModel.swift in Sources */,
 				F5E88FFB23D96F8500811159 /* ScannerViewController.swift in Sources */,
 				F5D6185A23D6E00200054D9F /* HomeViewController.swift in Sources */,
 				F5E88FF223D96D0900811159 /* Language.swift in Sources */,

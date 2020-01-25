@@ -29,7 +29,8 @@ enum Constants {
         // MARK:  Scanner
         
         // MARK:  Common
-        static let regular16 = UIFont.systemFont(ofSize: 16, weight: .regular)
+        static let regular16 = UIFont.systemFont(ofSize: 16.adjusted, weight: .regular)
+        static let regular14 = UIFont.systemFont(ofSize: 14.adjusted, weight: .regular)
 
         
     }
@@ -52,5 +53,10 @@ enum Constants {
     
     enum UserDefaultKey {
         static let LANGUAGEKEY = "languageKey"
+    }
+    
+    enum PathForDirectories {
+        static let assetManager = "AssetManager"
+        static let imageCateogry = "ImageCategory"
     }
 }

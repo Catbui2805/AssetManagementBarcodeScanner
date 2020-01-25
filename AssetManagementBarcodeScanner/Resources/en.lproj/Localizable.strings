@@ -11,6 +11,18 @@
 
 // catagory
 "category" = "Category";
+"add_image" = "Add image";
+"please_enter_name_category" = "Please enter name category!";
+"name_category" = "Name category";
+"edit" = "Edit";
+"edit_category" = "Edit Category";
+"would_you_like_to_choise_some_options_edit" = "Would you like to choise some option to edit category";
+"create_category" = "Create Category";
+"cancel" = "Cancel";
+"delete" = "Delete";
+"options" = "Options";
+"save" = "Save";
+"done" = "Done";
 
 // scanner
 "scanner" = "Scanner";
@@ -21,6 +33,7 @@
 "language" = "Language";
 "app_version" = "App version";
 "ok" = "Ok";
+"about" = "About";
 
 
 // Language

@@ -11,6 +11,18 @@
 
 // catagory
 "category" = "Sản phẩm";
+"add_image" = "Thêm ảnh";
+"please_enter_name_category" = "Hãy nhập loại tên thiết bị.";
+"name_category" = "Loại thiết bị";
+"edit" = "Sửa";
+"edit_category" = "Sửa danh mục sản phẩm";
+"would_you_like_to_choise_some_options_edit" = "Hay chọn danh mục bạn muốn thêm hoặc sửa";
+"create_category" = "Tạo danh mục";
+"cancel" = "Huỷ";
+"delete" = "Xoá";
+"options" = "Lựa chọn";
+"save" = "Lưu";
+"done" = "Xong";
 
 // scanner
 "scanner" = "Quét mã";
@@ -21,6 +33,7 @@
 "language" = "Ngôn ngữ";
 "app_version" = "Phiên bản ứng dụng";
 "ok" = "Đồng ý";
+"about" = "Thông tin";
 
 
 // Language

@@ -150,7 +150,6 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         }
         
         let data = categoryViewModel.getItem(indexPath.row)
-        data.imageData = categoryServices.getImageLocal(data.image)
         cell.configureCell(data)
         
         return cell

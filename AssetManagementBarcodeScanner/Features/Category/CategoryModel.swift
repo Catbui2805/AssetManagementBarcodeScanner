@@ -17,13 +17,11 @@ class CategoryModel: Object {
     @objc dynamic var image: String = ""
     let assets = List<AssetDetailModel>()
     var isSelected: Bool = false
-    var imageData: UIImage?
     
-    init(_ uuid: String ,_ name: String, _ image: String, _ imageData: UIImage?, _ isSelected: Bool) {
+    init(_ uuid: String ,_ name: String, _ image: String, _ isSelected: Bool) {
         self.uuid = uuid
         self.name = name
         self.image = image
-        self.imageData = imageData
         self.isSelected = isSelected
         super.init()
     }

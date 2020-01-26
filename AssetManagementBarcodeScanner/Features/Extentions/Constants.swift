@@ -62,10 +62,4 @@ enum Constants {
         static let LANGUAGEKEY = "languageKey"
     }
     
-    enum PathForDirectories {
-        static let assetManager = "AssetManager"
-        static let imageCateogry = "ImageCategory"
-        static let imageBarCode = "ImageBarCode"
-        static let imageQRCode = "ImageQRCode"
-    }
 }

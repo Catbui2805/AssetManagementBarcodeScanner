@@ -56,7 +56,7 @@ class CategoryCell: UICollectionViewCell {
     func configureCell(_ data: CategoryModel) {
         lbTitle.text = data.name
         
-        imageViewContent.image = data.imageData == nil ? UIImage(named: data.image) : data.imageData
+        imageViewContent.image = ImageLocalManger.shared.getItem(.ImageCateogry, data.image)
         
         if data.isSelected {
             imageViewSeleted.isHidden = false

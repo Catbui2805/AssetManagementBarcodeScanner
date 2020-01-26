@@ -56,7 +56,7 @@ class CreateCategoryViewController: UIViewController {
         
         if type == .Update {
             tfTitle.text = category?.name
-            ivIcon.image = category?.imageData == nil ? UIImage(named: category?.image ?? "") : category?.imageData 
+            ivIcon.image = ImageLocalManger.shared.getItem(.ImageCateogry, category?.image ?? "")
         }
         
     }
@@ -73,13 +73,12 @@ class CreateCategoryViewController: UIViewController {
                 uuid,
                 tfTitle.text ?? "not content",
                 uuid,
-                ivIcon.image ,
                 false)
             
             if type == .Update {
-                categoryServices.update(categoryModel)
+                categoryServices.update(categoryModel, ivIcon.image ?? UIImage(named: "ic_folder")!)
             } else {
-                categoryServices.save(categoryModel)
+                categoryServices.save(categoryModel, ivIcon.image ?? UIImage(named: "ic_folder")!)
             }
             addCategory?(categoryModel)
             

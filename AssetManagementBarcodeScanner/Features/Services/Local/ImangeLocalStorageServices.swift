@@ -60,7 +60,7 @@ class ImageLocalStorageServices: ImageLocalStorageServicesable {
     /// Configure directory of app
     func configureDirectory() -> String {
         let fileManager = FileManager.default
-        let path = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(Constants.PathForDirectories.assetManager)
+        let path = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(PathForDirectories.AssetManager.name())
         if !fileManager.fileExists(atPath: path) {
             try! fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
         }
@@ -105,7 +105,7 @@ class ImageLocalStorageServices: ImageLocalStorageServicesable {
         if fileManager.fileExists(atPath: yourProjectImagesPath) {
             try! fileManager.removeItem(atPath: yourProjectImagesPath)
         }
-        let yourProjectDirectoryPath = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(Constants.PathForDirectories.assetManager)
+        let yourProjectDirectoryPath = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(PathForDirectories.AssetManager.name())
         if fileManager.fileExists(atPath: yourProjectDirectoryPath) {
             try! fileManager.removeItem(atPath: yourProjectDirectoryPath)
         }

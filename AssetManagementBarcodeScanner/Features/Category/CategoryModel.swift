@@ -15,6 +15,7 @@ class CategoryModel: Object {
     @objc dynamic var uuid: String = ""
     @objc dynamic var name: String = ""
     @objc dynamic var image: String = ""
+    let assets = List<AssetDetailModel>()
     var isSelected: Bool = false
     var imageData: UIImage?
     

@@ -9,6 +9,13 @@
 import Foundation
 import UIKit
 
+enum CRUDType {
+    case Create
+    case Read
+    case Update
+    case Delete
+}
+
 enum Constants {
     
     enum Screen {
@@ -58,5 +65,7 @@ enum Constants {
     enum PathForDirectories {
         static let assetManager = "AssetManager"
         static let imageCateogry = "ImageCategory"
+        static let imageBarCode = "ImageBarCode"
+        static let imageQRCode = "ImageQRCode"
     }
 }

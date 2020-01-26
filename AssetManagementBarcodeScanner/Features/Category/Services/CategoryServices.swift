@@ -15,16 +15,16 @@ import RealmSwift
 protocol CategoryServicesable {
     
     // Load image local storage
-    func getImageLocal( _ category: CategoryModel) -> CategoryModel
+    func getImageLocal( _ name: String) -> UIImage?
     
     // Save image local storage
-    func saveImageLocal( _ category: CategoryModel)
+    func saveImageLocal( _ image: UIImage, _ name: String)
     
     // Update image local storage
-    func updateImageLocal( _ cateogry: CategoryModel)
+    func updateImageLocal( _ image: UIImage, _ name: String)
     
     // Delete image local storage
-    func deleteImageLocal(_ category: CategoryModel)
+    func deleteImageLocal( _ name: String)
     
     // Delete all image
     
@@ -66,60 +66,58 @@ extension CategoryServices: CategoryServicesable {
     }
     
     func save(_ category: CategoryModel) {
-        saveImageLocal(category)
+        if let image = category.imageData {
+            saveImageLocal(image, category.image)
+        }
         DataManager.shared.save(category)
     }
     
     func update(_ category: CategoryModel) {
-        updateImageLocal(category)
+        if let image = category.imageData {
+            updateImageLocal(image, category.image)
+        }
         DataManager.shared.update(category)
     }
     
+    // MARK:  delete image forlow uuid
+
     func delete(_ category: CategoryModel) {
-        deleteImageLocal(category)
+        deleteImageLocal(category.image)
         DataManager.shared.delete(category)
     }
     
     
     //--------------------------------
     /// Get image to loacal storage
-    /// - Parameter category: category
-    func getImageLocal(_ category: CategoryModel) -> CategoryModel {
+    /// - Parameter category: name image of category
+    func getImageLocal(_ name: String) -> UIImage? {
         guard let image = imageLocalStorageServices.getImageFromDocumentDirectory(
-            category.name,
-            Constants.PathForDirectories.imageCateogry) else { return category }
-        category.imageData = image
-        return category
+            name,
+            Constants.PathForDirectories.imageCateogry) else { return nil }
+        return image
     }
     
     
     /// Save image category to local storage
-    /// - Parameter : category
-    func saveImageLocal( _ category: CategoryModel) {
-        guard let image = category.imageData else {
-            return
-        }
+    func saveImageLocal( _ image: UIImage, _ name: String) {
         let _ = imageLocalStorageServices.saveImageDocumentDirectory(
             image,
-            category.name,
+            name,
             Constants.PathForDirectories.imageCateogry)
-        DataManager.shared.save(category)
     }
     
     
     /// Update image to local storage
-    /// - Parameter cateogries: list categories update
-    func updateImageLocal( _ category: CategoryModel) {
-        saveImageLocal(category)
+    func updateImageLocal( _ image: UIImage, _ name: String) {
+        saveImageLocal(image, name)
     }
     
-    
     /// Delete image local storage
-    /// - Parameter category: category delete
-    func deleteImageLocal(_ category: CategoryModel) {
+    /// - Parameter name: uuid image in category delete
+    func deleteImageLocal(_ name: String) {
         let _ = imageLocalStorageServices.deleteImageDocumentInDirectory(
             Constants.PathForDirectories.imageCateogry,
-            category.name)
+            name)
     }
     
 }

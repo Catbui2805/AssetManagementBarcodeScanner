@@ -60,13 +60,23 @@ private extension TabBarController {
         tabList.append(category)
         
         // MARK:  Scanner
-        let scanner = TabBarModel(ScannerViewController.identifier,
-                                  ScannerViewController(),
-                                  Translate.Shared.scanner(),
-                                  "ic_search_back",
-                                  "",
-                                  Translate.Shared.scanner())
+//        let scanner = TabBarModel(ScannerViewController.identifier,
+//                                  ScannerViewController(),
+//                                  Translate.Shared.scanner(),
+//                                  "ic_search_back",
+//                                  "",
+//                                  Translate.Shared.scanner())
+//        tabList.append(scanner)
+        
+        let scanner = TabBarModel(
+            ScannerViewController.identifier,
+            ScannerViewController(),
+            Translate.Shared.scanner(),
+            "ic_search_back",
+            "",
+            Translate.Shared.scanner())
         tabList.append(scanner)
+        
         
         // MARK:  Setting
         let setting = TabBarModel(SettingViewController.identifier,

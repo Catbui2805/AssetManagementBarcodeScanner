@@ -11,6 +11,7 @@
 		F5040D2123D95EC60087C1FD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F5040D2323D95EC60087C1FD /* Localizable.strings */; };
 		F5040D2B23D963250087C1FD /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5040D2A23D963250087C1FD /* String+Localized.swift */; };
 		F5040D2E23D96BBB0087C1FD /* Translate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5040D2D23D96BBB0087C1FD /* Translate.swift */; };
+		F5832C4C23DE149900EABA5D /* CategoryDetailServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5832C4B23DE149900EABA5D /* CategoryDetailServices.swift */; };
 		F59D560223D9DBF6003A967B /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D560123D9DBF6003A967B /* SettingViewModel.swift */; };
 		F59D560423D9DC1F003A967B /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D560323D9DC1F003A967B /* SettingModel.swift */; };
 		F59D560723D9E13F003A967B /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D560623D9E13F003A967B /* SettingCell.swift */; };
@@ -28,7 +29,13 @@
 		F59D562623DC0383003A967B /* CategoryServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D562523DC0383003A967B /* CategoryServices.swift */; };
 		F59D562A23DC1444003A967B /* ImangeLocalStorageServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D562923DC1444003A967B /* ImangeLocalStorageServices.swift */; };
 		F59D562F23DC3DC3003A967B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D562E23DC3DC3003A967B /* DataManager.swift */; };
-		F5BEBDBA23D8C05800332623 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5BEBDB923D8C05800332623 /* QRScannerViewController.swift */; };
+		F59D563323DC957A003A967B /* CategoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D563223DC957A003A967B /* CategoryDetailViewController.swift */; };
+		F59D563523DC959E003A967B /* CategoryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D563423DC959E003A967B /* CategoryDetailViewModel.swift */; };
+		F59D563723DC95B3003A967B /* CategoryDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D563623DC95B3003A967B /* CategoryDetailModel.swift */; };
+		F59D563A23DC9B9E003A967B /* AssetDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D563923DC9B9E003A967B /* AssetDetailModel.swift */; };
+		F59D563D23DD9322003A967B /* CreateAssetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D563C23DD9322003A967B /* CreateAssetDetailViewController.swift */; };
+		F59D564023DDAEA1003A967B /* UILabel+Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D563F23DDAEA1003A967B /* UILabel+Padding.swift */; };
+		F59D564223DDB80B003A967B /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D564123DDB80B003A967B /* ScannerViewController.swift */; };
 		F5D6182E23D6DF4C00054D9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D6182D23D6DF4C00054D9F /* AppDelegate.swift */; };
 		F5D6183023D6DF4C00054D9F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D6182F23D6DF4C00054D9F /* SceneDelegate.swift */; };
 		F5D6183823D6DF4C00054D9F /* AssetManagementBarcodeScanner.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F5D6183623D6DF4C00054D9F /* AssetManagementBarcodeScanner.xcdatamodeld */; };
@@ -41,7 +48,6 @@
 		F5E88FF223D96D0900811159 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E88FF123D96D0900811159 /* Language.swift */; };
 		F5E88FF423D96DF200811159 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E88FF323D96DF200811159 /* TabBarController.swift */; };
 		F5E88FF923D96F7300811159 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E88FF823D96F7300811159 /* CategoryViewController.swift */; };
-		F5E88FFB23D96F8500811159 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E88FFA23D96F8500811159 /* ScannerViewController.swift */; };
 		F5E88FFD23D96F9B00811159 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E88FFC23D96F9B00811159 /* SettingViewController.swift */; };
 		F5E8900023D9740700811159 /* TabBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5E88FFF23D9740700811159 /* TabBarModel.swift */; };
 		F86E402286D9602AAB24D0B0 /* Pods_AssetManagementBarcodeScannerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90FAE107135F64A465E9058D /* Pods_AssetManagementBarcodeScannerTests.framework */; };
@@ -68,6 +74,7 @@
 		F5040D2423D95EE00087C1FD /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F5040D2A23D963250087C1FD /* String+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
 		F5040D2D23D96BBB0087C1FD /* Translate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translate.swift; sourceTree = "<group>"; };
+		F5832C4B23DE149900EABA5D /* CategoryDetailServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailServices.swift; sourceTree = "<group>"; };
 		F59D560123D9DBF6003A967B /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		F59D560323D9DC1F003A967B /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
 		F59D560623D9E13F003A967B /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
@@ -85,7 +92,13 @@
 		F59D562523DC0383003A967B /* CategoryServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryServices.swift; sourceTree = "<group>"; };
 		F59D562923DC1444003A967B /* ImangeLocalStorageServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImangeLocalStorageServices.swift; sourceTree = "<group>"; };
 		F59D562E23DC3DC3003A967B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		F5BEBDB923D8C05800332623 /* QRScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
+		F59D563223DC957A003A967B /* CategoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewController.swift; sourceTree = "<group>"; };
+		F59D563423DC959E003A967B /* CategoryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailViewModel.swift; sourceTree = "<group>"; };
+		F59D563623DC95B3003A967B /* CategoryDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDetailModel.swift; sourceTree = "<group>"; };
+		F59D563923DC9B9E003A967B /* AssetDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetDetailModel.swift; sourceTree = "<group>"; };
+		F59D563C23DD9322003A967B /* CreateAssetDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAssetDetailViewController.swift; sourceTree = "<group>"; };
+		F59D563F23DDAEA1003A967B /* UILabel+Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Padding.swift"; sourceTree = "<group>"; };
+		F59D564123DDB80B003A967B /* ScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		F5D6182A23D6DF4C00054D9F /* AssetManagementBarcodeScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AssetManagementBarcodeScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5D6182D23D6DF4C00054D9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F5D6182F23D6DF4C00054D9F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,7 +115,6 @@
 		F5E88FF123D96D0900811159 /* Language.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		F5E88FF323D96DF200811159 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		F5E88FF823D96F7300811159 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
-		F5E88FFA23D96F8500811159 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		F5E88FFC23D96F9B00811159 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		F5E88FFF23D9740700811159 /* TabBarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,6 +162,7 @@
 		F5040D2623D960380087C1FD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F59D563E23DDAE6D003A967B /* Label */,
 				F5E88FFE23D973EC00811159 /* TabBar */,
 				F59D560823D9E478003A967B /* RatioScreenManager.swift */,
 				F59D560A23D9EC59003A967B /* UIColor+FromHex.swift */,
@@ -222,6 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				F59D562523DC0383003A967B /* CategoryServices.swift */,
+				F5832C4B23DE149900EABA5D /* CategoryDetailServices.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -248,6 +262,50 @@
 			children = (
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		F59D563023DC9500003A967B /* CategoryDetail */ = {
+			isa = PBXGroup;
+			children = (
+				F59D563823DC9B1B003A967B /* AssetDetail */,
+				F59D563123DC953D003A967B /* Cells */,
+				F59D563223DC957A003A967B /* CategoryDetailViewController.swift */,
+				F59D563423DC959E003A967B /* CategoryDetailViewModel.swift */,
+				F59D563623DC95B3003A967B /* CategoryDetailModel.swift */,
+			);
+			path = CategoryDetail;
+			sourceTree = "<group>";
+		};
+		F59D563123DC953D003A967B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		F59D563823DC9B1B003A967B /* AssetDetail */ = {
+			isa = PBXGroup;
+			children = (
+				F59D563B23DD92EE003A967B /* CreateAssetDetail */,
+				F59D563923DC9B9E003A967B /* AssetDetailModel.swift */,
+			);
+			path = AssetDetail;
+			sourceTree = "<group>";
+		};
+		F59D563B23DD92EE003A967B /* CreateAssetDetail */ = {
+			isa = PBXGroup;
+			children = (
+				F59D563C23DD9322003A967B /* CreateAssetDetailViewController.swift */,
+			);
+			path = CreateAssetDetail;
+			sourceTree = "<group>";
+		};
+		F59D563E23DDAE6D003A967B /* Label */ = {
+			isa = PBXGroup;
+			children = (
+				F59D563F23DDAEA1003A967B /* UILabel+Padding.swift */,
+			);
+			path = Label;
 			sourceTree = "<group>";
 		};
 		F5D6182123D6DF4C00054D9F = {
@@ -335,7 +393,6 @@
 			isa = PBXGroup;
 			children = (
 				F5D6185923D6E00200054D9F /* HomeViewController.swift */,
-				F5BEBDB923D8C05800332623 /* QRScannerViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -371,8 +428,9 @@
 		F5E88FF523D96F1700811159 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				F59D562423DC0369003A967B /* Services */,
+				F59D563023DC9500003A967B /* CategoryDetail */,
 				F59D562123DAFFCD003A967B /* CreateCategory */,
+				F59D562423DC0369003A967B /* Services */,
 				F59D561A23DAC876003A967B /* Cells */,
 				F5E88FF823D96F7300811159 /* CategoryViewController.swift */,
 				F59D561B23DAC898003A967B /* CategoryViewModel.swift */,
@@ -396,8 +454,8 @@
 		F5E88FF723D96F2800811159 /* Scanner */ = {
 			isa = PBXGroup;
 			children = (
+				F59D564123DDB80B003A967B /* ScannerViewController.swift */,
 				F5E3B61423D8D71800219514 /* GeneratorQRCode */,
-				F5E88FFA23D96F8500811159 /* ScannerViewController.swift */,
 			);
 			path = Scanner;
 			sourceTree = "<group>";
@@ -581,7 +639,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F59D562A23DC1444003A967B /* ImangeLocalStorageServices.swift in Sources */,
+				F59D563523DC959E003A967B /* CategoryDetailViewModel.swift in Sources */,
 				F59D562F23DC3DC3003A967B /* DataManager.swift in Sources */,
+				F59D564223DDB80B003A967B /* ScannerViewController.swift in Sources */,
 				F5040D2B23D963250087C1FD /* String+Localized.swift in Sources */,
 				F59D562623DC0383003A967B /* CategoryServices.swift in Sources */,
 				F59D561423DA075D003A967B /* LanguageModel.swift in Sources */,
@@ -589,17 +649,22 @@
 				F59D562023DACC9F003A967B /* CategoryCell.swift in Sources */,
 				F59D562323DB001C003A967B /* CreateCategoryViewController.swift in Sources */,
 				F5E88FF423D96DF200811159 /* TabBarController.swift in Sources */,
+				F59D563323DC957A003A967B /* CategoryDetailViewController.swift in Sources */,
 				F5D6183823D6DF4C00054D9F /* AssetManagementBarcodeScanner.xcdatamodeld in Sources */,
 				F5E88FF923D96F7300811159 /* CategoryViewController.swift in Sources */,
 				F5E88FFD23D96F9B00811159 /* SettingViewController.swift in Sources */,
-				F5BEBDBA23D8C05800332623 /* QRScannerViewController.swift in Sources */,
 				F5040D2E23D96BBB0087C1FD /* Translate.swift in Sources */,
 				F59D561223DA048B003A967B /* LanguageViewController.swift in Sources */,
 				F59D561623DA0779003A967B /* LanguageViewModel.swift in Sources */,
 				F59D560723D9E13F003A967B /* SettingCell.swift in Sources */,
+				F59D563A23DC9B9E003A967B /* AssetDetailModel.swift in Sources */,
 				F5D6182E23D6DF4C00054D9F /* AppDelegate.swift in Sources */,
+				F59D563D23DD9322003A967B /* CreateAssetDetailViewController.swift in Sources */,
+				F59D564023DDAEA1003A967B /* UILabel+Padding.swift in Sources */,
 				F5E8900023D9740700811159 /* TabBarModel.swift in Sources */,
+				F59D563723DC95B3003A967B /* CategoryDetailModel.swift in Sources */,
 				F59D560D23D9ECAF003A967B /* String+Color.swift in Sources */,
+				F5832C4C23DE149900EABA5D /* CategoryDetailServices.swift in Sources */,
 				F5D6183023D6DF4C00054D9F /* SceneDelegate.swift in Sources */,
 				F59D561E23DAC8AB003A967B /* CategoryModel.swift in Sources */,
 				F59D560923D9E478003A967B /* RatioScreenManager.swift in Sources */,
@@ -609,7 +674,6 @@
 				F5E3B61A23D8DA6E00219514 /* GeneratorQRCodeBarCodeViewController.swift in Sources */,
 				F59D560423D9DC1F003A967B /* SettingModel.swift in Sources */,
 				F59D561C23DAC898003A967B /* CategoryViewModel.swift in Sources */,
-				F5E88FFB23D96F8500811159 /* ScannerViewController.swift in Sources */,
 				F5D6185A23D6E00200054D9F /* HomeViewController.swift in Sources */,
 				F5E88FF223D96D0900811159 /* Language.swift in Sources */,
 			);

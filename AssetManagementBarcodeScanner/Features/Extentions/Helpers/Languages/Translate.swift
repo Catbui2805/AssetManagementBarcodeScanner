@@ -105,5 +105,24 @@ extension Translate {
         return "done".localized()
     }
     
+    func add() -> String {
+        return "add".localized()
+    }
+    
+    func update() -> String {
+        return "update".localized()
+    }
+    
+    func category_update() -> String{
+        return "category_update".localized()
+    }
+    
+    func asset_update() -> String {
+        return "asset_update".localized()
+    }
+    
+    func create_asset() -> String {
+        return "create_asset".localized()
+    }
 }
 

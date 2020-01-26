@@ -23,6 +23,11 @@
 "options" = "Options";
 "save" = "Save";
 "done" = "Done";
+"add" = "Add";
+"update" = "Update";
+"category_update" = "Category update";
+"asset_update" = "Asset update";
+"create_asset" = "Create asset";
 
 // scanner
 "scanner" = "Scanner";

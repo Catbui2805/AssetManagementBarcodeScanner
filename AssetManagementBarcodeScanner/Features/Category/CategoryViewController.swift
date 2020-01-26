@@ -104,6 +104,17 @@ private extension CategoryViewController {
         cvCategories.register(CategoryCell.self, forCellWithReuseIdentifier: CategoryCell.identifier)
     }
     
+    func preConditionView() {
+        if categoryViewModel.getNumberOfCategories() < 1 {
+            cvCategories.isHidden = true
+            btAddCategory.isHidden = false
+            shouldEdit = false
+        } else {
+            cvCategories.isHidden = false
+            btAddCategory.isHidden = true
+        }
+    }
+    
     func setupNavigation() {
         rightBarButtonItem = UIBarButtonItem(title: Translate.Shared.edit(), style: .plain, target: self, action: #selector(tappedEdit))
         navigationItem.rightBarButtonItem = rightBarButtonItem
@@ -139,8 +150,8 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
         }
         
         let data = categoryViewModel.getItem(indexPath.row)
-        let category = categoryServices.getImageLocal(data)
-        cell.configureCell(category)
+        data.imageData = categoryServices.getImageLocal(data.image)
+        cell.configureCell(data)
         
         return cell
     }
@@ -157,7 +168,7 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
                 let vc = CreateCategoryViewController()
                 vc.hidesBottomBarWhenPushed = true
                 vc.title = Translate.Shared.edit()
-                vc.type = .Edit
+                vc.type = .Update
                 vc.category = self.categoryViewModel.getItem(indexPath.row)
                 vc.addCategory = { [weak self] item in
                     self?.categoryViewModel.editItem(indexPath.row, item)
@@ -170,13 +181,7 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
                 self.categoryServices.delete(self.categoryViewModel.getItem(indexPath.row))
                 self.categoryViewModel.deleteItem(indexPath.row)
                 self.cvCategories.reloadData()
-                if self.categoryViewModel.getNumberOfCategories() < 1 {
-                    self.cvCategories.isHidden = true
-                    self.btAddCategory.isHidden = false
-                } else {
-                    self.cvCategories.isHidden = false
-                    self.btAddCategory.isHidden = true
-                }
+                self.preConditionView()
             }
             let cancel = UIAlertAction(title: Translate.Shared.cancel(), style: .cancel, handler: nil)
             

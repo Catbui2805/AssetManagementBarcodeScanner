@@ -10,6 +10,8 @@ import UIKit
 
 class GeneratorQRCodeBarCodeViewController: UIViewController {
     
+    static let identifier: String = "GeneratorQRCodeBarCodeViewController"
+    
     var image: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false

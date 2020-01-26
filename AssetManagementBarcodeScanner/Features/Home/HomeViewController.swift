@@ -37,8 +37,9 @@ class HomeViewController: UIViewController {
     }
     
     @objc func tappedQRScanner() {
-        let vc = QRScannerViewController()
-        vc.title = "Scanner"
+        let vc = CreateAssetDetailViewController()        
+//        let vc = QRScannerViewController()
+//        vc.title = "Scanner"
         navigationController?.pushViewController(vc, animated: true)
         
 //        // MARK:  generator QR code

@@ -23,6 +23,11 @@
 "options" = "Lựa chọn";
 "save" = "Lưu";
 "done" = "Xong";
+"add" = "Thêm";
+"update" = "Cập nhật";
+"category_update" = "Thêm thông tin loại tài sản";
+"asset_update" = "Thêm thông tin tài sản";
+"create_asset" = "Tạo tài sản";
 
 // scanner
 "scanner" = "Quét mã";

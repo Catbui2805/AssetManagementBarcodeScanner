@@ -22,7 +22,7 @@ class CreateAssetDetailViewController: UIViewController {
     private var stackView: UIStackView!
     
     private let ivAsset: UIImageView = {
-       let iv = UIImageView()
+        let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.clipsToBounds = true
         iv.layer.masksToBounds = true
@@ -65,7 +65,7 @@ class CreateAssetDetailViewController: UIViewController {
     }()
     
     private let ivQRCode: UIImageView = {
-       let iv = UIImageView()
+        let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.clipsToBounds = true
         iv.layer.cornerRadius = 0.adjusted
@@ -77,15 +77,17 @@ class CreateAssetDetailViewController: UIViewController {
     var rightBarButtonItem = UIBarButtonItem()
     
     
-    let uuidAsset: String = UUID().uuidString
+    let uuidAsset: String = String(UUID().uuidString.prefix(8))
+    var createAssetDetailServices: CreateAssetDetailServicesable!
+    
     
     var type: CRUDType = .Create
-    var assetDetailModel: ((AssetDetailModel) -> Void)?
-    var assetDetailModelUpdate: AssetDetailModel?
+    var assetDetailModelCurrent: ((AssetDetailModel) -> Void)?
+    var assetDetailModelOld: AssetDetailModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        createAssetDetailServices = CreateAssetDetailServices()
         setupViews()
     }
     
@@ -112,6 +114,27 @@ class CreateAssetDetailViewController: UIViewController {
     }
     
     @objc func tappedToSave() {
+        guard let name = tfName.text, !(tfName.text?.isEmpty ?? true)  else {
+            tfName.errorMessage = Translate.Shared.please_enter_name_category()
+            tfName.becomeFirstResponder()
+            return
+        }
+        
+        let uuid = assetDetailModelOld?.uuid ?? uuidAsset
+        let assetDetailModel = AssetDetailModel(uuid, name, uuid, uuid, uuid)
+        if type == .Update {
+            createAssetDetailServices.update(assetDetailModel,
+                                             ivAsset.image!,
+                                             ivBarCode.image!,
+                                             ivQRCode.image!)
+        } else {
+            createAssetDetailServices.save(assetDetailModel,
+                                           ivAsset.image!,
+                                           ivBarCode.image!,
+                                           ivQRCode.image!)
+        }
+        assetDetailModelCurrent?(assetDetailModel)
+        navigationController?.popViewController(animated: true)
         
         
     }
@@ -123,7 +146,6 @@ class CreateAssetDetailViewController: UIViewController {
         picker.modalPresentationStyle = .fullScreen
         present(picker, animated: true)
     }
-    
 }
 
 
@@ -138,7 +160,7 @@ private extension CreateAssetDetailViewController {
         
         setupNavigation()
         setupTextFields()
-
+        
     }
     
     func setupNavigation() {
@@ -158,10 +180,10 @@ private extension CreateAssetDetailViewController {
         scrollView.addGestureRecognizer(tapGesture)
         scrollView.contentInset = .init(top: 40.adjusted, left: 0, bottom: 40.adjusted, right: 0)
         NSLayoutConstraint.activate([
-          scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-          scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-          scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
-          scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+            scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
     }
     
@@ -175,11 +197,11 @@ private extension CreateAssetDetailViewController {
         
         scrollView.addSubview(stackView)
         NSLayoutConstraint.activate([
-          stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-          stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-          stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-          stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-          stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
     }
     
@@ -237,10 +259,10 @@ private extension CreateAssetDetailViewController {
             ivBarCode.heightAnchor.constraint(equalToConstant: 100.adjusted),
             ivBarCode.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 40.adjusted),
             ivBarCode.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -40.adjusted)
-
+            
         ])
     }
-
+    
     func setupImageViewQRcode() {
         stackView.addArrangedSubview(ivQRCode)
         let lbQRCode = UILabel(frame: CGRect(x: 0, y: 0, width: tfName.frame.size.width, height: 44))
@@ -277,11 +299,11 @@ private extension CreateAssetDetailViewController {
     
     func generateBarcode(from string: String) -> UIImage? {
         let data = string.data(using: String.Encoding.ascii)
-
+        
         if let filter = CIFilter(name: "CICode128BarcodeGenerator") {
             filter.setValue(data, forKey: "inputMessage")
             let transform = CGAffineTransform(scaleX: 3, y: 3)
-
+            
             if let output = filter.outputImage?.transformed(by: transform) {
                 return UIImage(ciImage: output)
             }

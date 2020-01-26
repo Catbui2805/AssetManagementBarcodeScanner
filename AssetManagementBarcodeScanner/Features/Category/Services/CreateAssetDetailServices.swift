@@ -19,10 +19,10 @@ protocol CreateAssetDetailServicesable {
     func getAll() -> [AssetDetailModel]
     
     // Save data
-    func save(_ item: AssetDetailModel, _ image: UIImage)
+    func save(_ item: AssetDetailModel, _ asset: UIImage, _ barCode: UIImage, _ qrCode: UIImage)
     
     // Update data
-    func update( _ item: AssetDetailModel, _ image: UIImage)
+    func update(_ item: AssetDetailModel, _ asset: UIImage, _ barCode: UIImage, _ qrCode: UIImage)
     
     // Delete data
     func delete( _ item: AssetDetailModel)
@@ -30,7 +30,7 @@ protocol CreateAssetDetailServicesable {
 }
 
 class CreateAssetDetailServices {
-
+    
 }
 
 extension CreateAssetDetailServices: CreateAssetDetailServicesable {
@@ -47,18 +47,24 @@ extension CreateAssetDetailServices: CreateAssetDetailServicesable {
         return data
     }
     
-    func save(_ item: AssetDetailModel, _ image: UIImage) {
-        ImageLocalManger.shared.save(.ImageAssets, item.imageAsset, image)
+    func save(_ item: AssetDetailModel, _ asset: UIImage, _ barCode: UIImage, _ qrCode: UIImage) {
+        ImageLocalManger.shared.save(.ImageAssets, item.imageAsset, asset)
+        ImageLocalManger.shared.save(.ImageBarCode, item.imageBarCode, barCode)
+        ImageLocalManger.shared.save(.ImageQRCode, item.imageQRCode, qrCode)
         DataManager.shared.save(item)
     }
     
-    func update(_ item: AssetDetailModel, _ image: UIImage) {
-        ImageLocalManger.shared.update(.ImageAssets, item.imageAsset, image)
+    func update(_ item: AssetDetailModel, _ asset: UIImage, _ barCode: UIImage, _ qrCode: UIImage) {
+        ImageLocalManger.shared.update(.ImageAssets, item.imageAsset, asset)
+        ImageLocalManger.shared.update(.ImageBarCode, item.imageBarCode, barCode)
+        ImageLocalManger.shared.update(.ImageQRCode, item.imageQRCode, qrCode)
         DataManager.shared.save(item)
     }
     
     func delete(_ item: AssetDetailModel) {
         ImageLocalManger.shared.delete(.ImageAssets, item.imageAsset)
+        ImageLocalManger.shared.delete(.ImageBarCode, item.imageBarCode)
+        ImageLocalManger.shared.delete(.ImageQRCode, item.imageQRCode)
     }
     
 }

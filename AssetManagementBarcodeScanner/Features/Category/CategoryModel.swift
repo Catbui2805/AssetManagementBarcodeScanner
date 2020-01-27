@@ -15,7 +15,7 @@ class CategoryModel: Object {
     @objc dynamic var uuid: String = ""
     @objc dynamic var name: String = ""
     @objc dynamic var image: String = ""
-    let assets = List<AssetDetailModel>()
+    var assets = List<AssetDetailModel>()
     var isSelected: Bool = false
     
     init(_ uuid: String ,_ name: String, _ image: String, _ isSelected: Bool) {
@@ -32,5 +32,14 @@ class CategoryModel: Object {
     
     override class func primaryKey() -> String? {
         return "uuid"
+    }
+    
+    func copyf() -> CategoryModel {
+        let item  = CategoryModel()
+        item.uuid = self.uuid
+        item.name = self.name
+        item.image = self.image
+        item.assets = self.assets
+        return item
     }
 }

@@ -24,6 +24,8 @@
 "save" = "Lưu";
 "done" = "Xong";
 "add" = "Thêm";
+"read" = "Xem Chi tiết";
+"create" = "Tạo mới";
 "update" = "Cập nhật";
 "category_update" = "Thêm thông tin loại tài sản";
 "asset_update" = "Thêm thông tin tài sản";

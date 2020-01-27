@@ -75,7 +75,6 @@ class AssetDetailModel: Object {
     convenience init( _ uuid: String, _ name: String, _ imageAsset: String, _ imageBarCode: String, _ imageQRCode: String) {
         
         self.init()
-        
         self.uuid = uuid
         self.name = name
         self.imageAsset = imageAsset

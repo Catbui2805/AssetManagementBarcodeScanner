@@ -124,5 +124,14 @@ extension Translate {
     func create_asset() -> String {
         return "create_asset".localized()
     }
+    
+    func read() -> String {
+        return "read".localized()
+    }
+    
+    func create() -> String {
+        return "create".localized()
+    }
+    
 }
 

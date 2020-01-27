@@ -25,6 +25,8 @@
 "done" = "Done";
 "add" = "Add";
 "update" = "Update";
+"read" = "Read";
+"create" = "Create";
 "category_update" = "Category update";
 "asset_update" = "Asset update";
 "create_asset" = "Create asset";

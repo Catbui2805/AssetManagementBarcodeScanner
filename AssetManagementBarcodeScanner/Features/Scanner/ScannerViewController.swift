@@ -47,7 +47,6 @@ class ScannerViewController: UIViewController {
         
         setupViews()
         
-        
         // Get the back-facing camera for capturing videos
         guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {
             print("Failed to get the camera device")

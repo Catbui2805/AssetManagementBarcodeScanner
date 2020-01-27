@@ -99,12 +99,40 @@ class CreateCategoryViewController: UIViewController {
     }
     
     @objc func tappedAddImage() {
+                let picker = UIImagePickerController()
+                picker.allowsEditing = true
+                picker.delegate = self
+                picker.modalPresentationStyle = .fullScreen
+                present(picker, animated: true)
         
-        let picker = UIImagePickerController()
-        picker.allowsEditing = true
-        picker.delegate = self
-        picker.modalPresentationStyle = .fullScreen
-        present(picker, animated: true)
+//        let actionSheet = UIAlertController(title: "Select Photo", message: "Where do you want to select a photo?", preferredStyle: .actionSheet)
+//
+//        let photoAction = UIAlertAction(title: "Photos", style: .default) { (action) in
+//            if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum) {
+//                let photoPicker = UIImagePickerController()
+//                photoPicker.delegate = self
+//                photoPicker.sourceType = .photoLibrary
+//                photoPicker.allowsEditing = false
+//
+//                self.present(photoPicker, animated: true, completion: nil)
+//            }
+//        }
+//        actionSheet.addAction(photoAction)
+//
+//        let cameraAction = UIAlertAction(title: "Camera", style: .default) { (action) in
+//            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+//                let cameraPicker = UIImagePickerController()
+//                cameraPicker.delegate = self
+//                cameraPicker.sourceType = .camera
+//                self.present(cameraPicker, animated: true, completion: nil)
+//            }
+//        }
+//        actionSheet.addAction(cameraAction)
+//
+//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+//        actionSheet.addAction(cancelAction)
+//
+//        self.present(actionSheet, animated: true, completion: nil)
     }
 }
 
@@ -181,7 +209,6 @@ private extension CreateCategoryViewController {
         toolbar.sizeToFit()
         
         tfTitle.inputAccessoryView = toolbar
-        
     }
     
 }

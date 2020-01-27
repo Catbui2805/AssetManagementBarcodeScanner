@@ -8,6 +8,8 @@
 
 import UIKit
 import SkyFloatingLabelTextField
+import RealmSwift
+import Realm
 
 class CreateAssetDetailViewController: UIViewController {
     
@@ -74,27 +76,23 @@ class CreateAssetDetailViewController: UIViewController {
         return iv
     }()
     
+    let lbBarCode = UILabel(frame: CGRect(x: 0, y: 0, width: Constants.Screen.screenWidth, height: 44))
+    
+    let lbQRCode = UILabel(frame: CGRect(x: 0, y: 0, width: Constants.Screen.screenWidth, height: 44))
+    
     var rightBarButtonItem = UIBarButtonItem()
     
     
-    let uuidAsset: String = String(UUID().uuidString.prefix(8))
-    var createAssetDetailServices: CreateAssetDetailServicesable!
-    
-    
+    var uuidAsset: String = String(UUID().uuidString.prefix(8))
     var type: CRUDType = .Create
     var assetDetailModelCurrent: ((AssetDetailModel) -> Void)?
     var assetDetailModelOld: AssetDetailModel?
+    var categoryModel: CategoryModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createAssetDetailServices = CreateAssetDetailServices()
         setupViews()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        ivBarCode.image = generateBarcode(from: uuidAsset)
-        ivQRCode.image = generateQRCode(from: uuidAsset)
+        
     }
     
     @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
@@ -119,23 +117,28 @@ class CreateAssetDetailViewController: UIViewController {
             tfName.becomeFirstResponder()
             return
         }
-        
+        let realm = try! Realm()
         let uuid = assetDetailModelOld?.uuid ?? uuidAsset
         let assetDetailModel = AssetDetailModel(uuid, name, uuid, uuid, uuid)
+        guard let object = categoryModel else {
+            return
+        }
         if type == .Update {
-            createAssetDetailServices.update(assetDetailModel,
-                                             ivAsset.image!,
-                                             ivBarCode.image!,
-                                             ivQRCode.image!)
+            try! realm.write {
+                realm.add(assetDetailModel, update: .all)
+                object.assets.append(assetDetailModel)
+            }
         } else {
-            createAssetDetailServices.save(assetDetailModel,
-                                           ivAsset.image!,
-                                           ivBarCode.image!,
-                                           ivQRCode.image!)
+            try! realm.write {
+                realm.add(assetDetailModel, update: .error)
+                object.assets.append(assetDetailModel)
+            }
+        }
+        if let image = ivAsset.image {
+            ImageLocalManger.shared.save(.ImageAssets, uuid, image)
         }
         assetDetailModelCurrent?(assetDetailModel)
         navigationController?.popViewController(animated: true)
-        
         
     }
     
@@ -154,6 +157,7 @@ class CreateAssetDetailViewController: UIViewController {
 private extension CreateAssetDetailViewController {
     func setupViews() {
         view.backgroundColor = .white
+        preConditionsView()
         setupScrollView()
         setupStackViewContent()
         setupViewContent()
@@ -161,6 +165,18 @@ private extension CreateAssetDetailViewController {
         setupNavigation()
         setupTextFields()
         
+    }
+    
+    func preConditionsView() {
+        if type == .Update {
+            tfName.text = assetDetailModelOld?.name ?? ""
+            uuidAsset = assetDetailModelOld?.uuid ?? ""
+            ivAsset.image = ImageLocalManger.shared.getItem(.ImageAssets, assetDetailModelOld?.imageAsset ?? "")
+        }
+        lbBarCode.text = uuidAsset
+        lbQRCode.text = uuidAsset
+        ivBarCode.image = generateBarcode(from: uuidAsset)
+        ivQRCode.image = generateQRCode(from: uuidAsset)
     }
     
     func setupNavigation() {
@@ -249,8 +265,6 @@ private extension CreateAssetDetailViewController {
     
     func setupImageViewBarCode() {
         stackView.addArrangedSubview(ivBarCode)
-        let lbBarCode = UILabel(frame: CGRect(x: 0, y: 0, width: tfName.frame.size.width, height: 44))
-        lbBarCode.text = uuidAsset
         lbBarCode.textAlignment = .center
         lbBarCode.numberOfLines = 0
         stackView.addArrangedSubview(lbBarCode)
@@ -265,8 +279,6 @@ private extension CreateAssetDetailViewController {
     
     func setupImageViewQRcode() {
         stackView.addArrangedSubview(ivQRCode)
-        let lbQRCode = UILabel(frame: CGRect(x: 0, y: 0, width: tfName.frame.size.width, height: 44))
-        lbQRCode.text = uuidAsset
         lbQRCode.textAlignment = .center
         lbQRCode.numberOfLines = 0
         stackView.addArrangedSubview(lbQRCode)
@@ -332,7 +344,6 @@ private extension CreateAssetDetailViewController {
         
     }
 }
-
 
 // MARK:  Get image from library
 

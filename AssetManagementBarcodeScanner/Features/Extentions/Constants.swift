@@ -14,6 +14,20 @@ enum CRUDType {
     case Read
     case Update
     case Delete
+    
+    func name() -> String {
+        switch self {
+        case .Create:
+            return Translate.Shared.create()
+        case .Read:
+            return Translate.Shared.read()
+        case .Update:
+            return Translate.Shared.update()
+        case .Delete:
+            return Translate.Shared.delete()
+        }
+    }
+    
 }
 
 enum Constants {
@@ -36,8 +50,14 @@ enum Constants {
         // MARK:  Scanner
         
         // MARK:  Common
+        
+        // Regular
         static let regular16 = UIFont.systemFont(ofSize: 16.adjusted, weight: .regular)
         static let regular14 = UIFont.systemFont(ofSize: 14.adjusted, weight: .regular)
+        static let regular12 = UIFont.systemFont(ofSize: 12.adjusted, weight: .regular)
+        
+        // Semibold
+        static let semibold16 = UIFont.systemFont(ofSize: 16.adjusted, weight: .semibold)
 
         
     }

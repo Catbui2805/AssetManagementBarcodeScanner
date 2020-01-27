@@ -189,6 +189,11 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
             alert.addAction(delete)
             alert.addAction(cancel)
             present(alert, animated: true, completion: nil)
+        } else {
+            let vc = CategoryDetailViewController()
+            vc.hidesBottomBarWhenPushed = true
+            vc.categoryModel = categoryViewModel.getItem(indexPath.row)
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

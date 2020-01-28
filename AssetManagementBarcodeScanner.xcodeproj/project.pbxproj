@@ -14,6 +14,7 @@
 		F5832C5023DE1B7C00EABA5D /* ImageLocalManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5832C4F23DE1B7C00EABA5D /* ImageLocalManger.swift */; };
 		F5832C5623DEB1E800EABA5D /* AssetItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5832C5523DEB1E800EABA5D /* AssetItemCell.swift */; };
 		F5832C5823DF5B0000EABA5D /* Date+ToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5832C5723DF5B0000EABA5D /* Date+ToString.swift */; };
+		F5832C5A23DF84E300EABA5D /* CreateBarQRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5832C5923DF84E300EABA5D /* CreateBarQRCodeViewController.swift */; };
 		F59D560223D9DBF6003A967B /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D560123D9DBF6003A967B /* SettingViewModel.swift */; };
 		F59D560423D9DC1F003A967B /* SettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D560323D9DC1F003A967B /* SettingModel.swift */; };
 		F59D560723D9E13F003A967B /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F59D560623D9E13F003A967B /* SettingCell.swift */; };
@@ -79,6 +80,7 @@
 		F5832C4F23DE1B7C00EABA5D /* ImageLocalManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLocalManger.swift; sourceTree = "<group>"; };
 		F5832C5523DEB1E800EABA5D /* AssetItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetItemCell.swift; sourceTree = "<group>"; };
 		F5832C5723DF5B0000EABA5D /* Date+ToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+ToString.swift"; sourceTree = "<group>"; };
+		F5832C5923DF84E300EABA5D /* CreateBarQRCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBarQRCodeViewController.swift; sourceTree = "<group>"; };
 		F59D560123D9DBF6003A967B /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		F59D560323D9DC1F003A967B /* SettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingModel.swift; sourceTree = "<group>"; };
 		F59D560623D9E13F003A967B /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				F59D563C23DD9322003A967B /* CreateAssetDetailViewController.swift */,
+				F5832C5923DF84E300EABA5D /* CreateBarQRCodeViewController.swift */,
 			);
 			path = CreateAssetDetail;
 			sourceTree = "<group>";
@@ -667,6 +670,7 @@
 				F59D560723D9E13F003A967B /* SettingCell.swift in Sources */,
 				F59D563A23DC9B9E003A967B /* AssetDetailModel.swift in Sources */,
 				F5D6182E23D6DF4C00054D9F /* AppDelegate.swift in Sources */,
+				F5832C5A23DF84E300EABA5D /* CreateBarQRCodeViewController.swift in Sources */,
 				F59D563D23DD9322003A967B /* CreateAssetDetailViewController.swift in Sources */,
 				F59D564023DDAEA1003A967B /* UILabel+Padding.swift in Sources */,
 				F5832C5823DF5B0000EABA5D /* Date+ToString.swift in Sources */,

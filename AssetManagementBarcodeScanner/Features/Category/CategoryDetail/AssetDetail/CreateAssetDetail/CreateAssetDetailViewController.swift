@@ -101,6 +101,7 @@ class CreateAssetDetailViewController: UIViewController {
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.placeholder = "Price"
         tf.title = "Price"
+        tf.text = "0.0"
         tf.keyboardType = .numberPad
         return tf
     }()
@@ -166,6 +167,10 @@ class CreateAssetDetailViewController: UIViewController {
     
     @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
         tfName.resignFirstResponder()
+        tfSeriNumber.resignFirstResponder()
+        tfNote.resignFirstResponder()
+        tfLabel.resignFirstResponder()
+        tfPrice.resignFirstResponder()
     }
     
     @objc func textFieldDidChange(_ textfield: SkyFloatingLabelTextField) {
@@ -181,14 +186,23 @@ class CreateAssetDetailViewController: UIViewController {
     }
     
     @objc func tappedToSave() {
-        guard let name = tfName.text, !(tfName.text?.isEmpty ?? true)  else {
-            tfName.errorMessage = Translate.Shared.please_enter_name_category()
+        guard let name = tfName.text, !(tfName.text?.isEmpty ?? true) else {
+            tfName.errorMessage = "Please input name"
             tfName.becomeFirstResponder()
             return
         }
+        guard let seriNumber = tfSeriNumber.text, !(tfSeriNumber.text?.isEmpty ?? true) else {
+            tfSeriNumber.errorMessage = "Please input seri number"
+            tfSeriNumber.becomeFirstResponder()
+            return
+        }
+        
         let realm = try! Realm()
         let uuid = assetDetailModelOld?.uuid ?? uuidAsset
-        let assetDetailModel = AssetDetailModel(uuid, name, uuid, uuid, uuid)
+        let assetDetailModel = AssetDetailModel(uuid, name, tfLabel.text ?? "", seriNumber,
+                                                tfAssetStatus.text ?? AssetStatus.NORMAL.name(),
+                                                tfNote.text ?? "", uuid, uuid, uuid, Date(),
+                                                Double(tfPrice.text ?? "0")!, Date())
         guard let object = categoryModel else {
             return
         }
@@ -217,6 +231,14 @@ class CreateAssetDetailViewController: UIViewController {
         picker.delegate = self
         picker.modalPresentationStyle = .fullScreen
         present(picker, animated: true)
+    }
+    
+    @objc func btShareAction() {
+        guard let item = assetDetailModelOld else { return }
+        let pdfCreator = PDFCreator(item, ivAsset.image, ivBarCode.image, ivQRCode.image)
+        let pdfData = pdfCreator.createAssetDetail()
+        let vc = UIActivityViewController(activityItems: [pdfData], applicationActivities: [])
+        present(vc, animated: true, completion: nil)
     }
 }
 
@@ -291,15 +313,15 @@ private extension CreateAssetDetailViewController {
     }
     
     func setupNavigation() {
-        rightBarButtonItem = UIBarButtonItem(title: Translate.Shared.save(), style: .plain, target: self, action: #selector(tappedToSave))
         switch type {
         case .Read:
             title = type.name()
+            rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(btShareAction))
         default:
             title = type.name()
-            navigationItem.rightBarButtonItem = rightBarButtonItem
+            rightBarButtonItem = UIBarButtonItem(title: Translate.Shared.save(), style: .plain, target: self, action: #selector(tappedToSave))
         }
-        
+        navigationItem.rightBarButtonItem = rightBarButtonItem
     }
     
     func setupScrollView() {
@@ -323,8 +345,9 @@ private extension CreateAssetDetailViewController {
         stackView.spacing = 16.adjusted
         stackView.distribution = .fill
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        
         scrollView.addSubview(stackView)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
+        stackView.addGestureRecognizer(tapGesture)
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
@@ -361,7 +384,7 @@ private extension CreateAssetDetailViewController {
             btAddImage.centerXAnchor.constraint(equalTo: viewImageAsset.centerXAnchor),
             btAddImage.topAnchor.constraint(equalTo: viewImageAsset.topAnchor),
             btAddImage.heightAnchor.constraint(equalTo: viewImageAsset.heightAnchor),
-            btAddImage.widthAnchor.constraint(equalTo: viewImageAsset.widthAnchor),
+            btAddImage.widthAnchor.constraint(equalTo: ivAsset.widthAnchor),
             
             ivAsset.topAnchor.constraint(equalTo: viewImageAsset.topAnchor),
             ivAsset.centerXAnchor.constraint(equalTo: viewImageAsset.centerXAnchor),

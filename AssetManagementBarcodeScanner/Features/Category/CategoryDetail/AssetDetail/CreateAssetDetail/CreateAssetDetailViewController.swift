@@ -56,6 +56,75 @@ class CreateAssetDetailViewController: UIViewController {
         return tf
     }()
     
+    let tfLabel: SkyFloatingLabelTextField = {
+        let tf = SkyFloatingLabelTextField()
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.placeholder = "Label"
+        tf.title = "Label"
+        return tf
+    }()
+    
+    
+    let tfSeriNumber: SkyFloatingLabelTextField = {
+        let tf = SkyFloatingLabelTextField()
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.placeholder = "Seri number"
+        tf.title = "Seri number"
+        tf.errorColor = .red
+        tf.clipsToBounds = true
+        tf.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        return tf
+    }()
+    
+    let tfAssetStatus: SkyFloatingLabelTextField = {
+        let tf = SkyFloatingLabelTextField()
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.title = "Asset status"
+        tf.text = AssetStatus.NORMAL.name()
+        tf.placeholder = "Asset status"
+        tf.clipsToBounds = true
+//        tf.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        return tf
+    }()
+    
+    let tfNote: SkyFloatingLabelTextField = {
+        let tf = SkyFloatingLabelTextField()
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.placeholder = "Notes"
+        tf.title = "Notes"
+        tf.clipsToBounds = true
+        return tf
+    }()
+    
+    let tfPrice: SkyFloatingLabelTextField = {
+        let tf = SkyFloatingLabelTextField()
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.placeholder = "Price"
+        tf.title = "Price"
+        tf.keyboardType = .numberPad
+        return tf
+    }()
+    
+    let tfDatePurchase: SkyFloatingLabelTextField = {
+        let tf = SkyFloatingLabelTextField()
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.placeholder = "Date purchase"
+        tf.title = "Date purchase"
+        tf.text = "\(Date().toString(dateFormat: Constants.Strings.dateFormat))"
+//        tf.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        return tf
+    }()
+    
+    let tfDateUpdate: SkyFloatingLabelTextField = {
+        let tf = SkyFloatingLabelTextField()
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.placeholder = "Date update"
+        tf.title = "Date update"
+        tf.text = "\(Date().toString(dateFormat: Constants.Strings.dateFormat))"
+//        tf.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        return tf
+    }()
+    
     private var ivBarCode: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
@@ -157,22 +226,64 @@ class CreateAssetDetailViewController: UIViewController {
 private extension CreateAssetDetailViewController {
     func setupViews() {
         view.backgroundColor = .white
-        preConditionsView()
         setupScrollView()
         setupStackViewContent()
         setupViewContent()
-        
-        setupNavigation()
         setupTextFields()
-        
+        setupNavigation()
+        preConditionsView()
     }
     
     func preConditionsView() {
-        if type == .Update {
+        switch type {
+        case .Create: break
+            
+        case .Read:
             tfName.text = assetDetailModelOld?.name ?? ""
+            tfName.textColor = Constants.Colors.color222222
+            
+            tfLabel.text = assetDetailModelOld?.label ?? ""
+            tfLabel.textColor = Constants.Colors.color222222
+            
+            tfAssetStatus.text = assetDetailModelOld?.assetStatus ?? ""
+            tfAssetStatus.textColor = Constants.Colors.color222222
+            
+            tfSeriNumber.text = assetDetailModelOld?.seriNumber ?? ""
+            tfSeriNumber.textColor = Constants.Colors.color222222
+            
+            tfPrice.text = "\(String(describing: assetDetailModelOld?.price ?? 0.0))"
+            tfPrice.textColor = Constants.Colors.color222222
+            
+            tfNote.text = assetDetailModelOld?.note ?? ""
+            tfNote.textColor = Constants.Colors.color222222
+            
+            tfDateUpdate.text = assetDetailModelOld?.dateUpdate.toString(dateFormat: Constants.Strings.dateFormat)
+            tfDateUpdate.textColor = Constants.Colors.color222222
+            
+            tfDatePurchase.text = assetDetailModelOld?.dateOfPurchase.toString(dateFormat: Constants.Strings.dateFormat)
+            tfDatePurchase.textColor = Constants.Colors.color222222
+            
             uuidAsset = assetDetailModelOld?.uuid ?? ""
             ivAsset.image = ImageLocalManger.shared.getItem(.ImageAssets, assetDetailModelOld?.imageAsset ?? "")
+            btAddImage.setTitle("", for: .normal)
+            
+            stackView.isUserInteractionEnabled = false
+            
+        case .Update:
+            tfName.text = assetDetailModelOld?.name ?? ""
+            tfLabel.text = assetDetailModelOld?.label ?? ""
+            tfAssetStatus.text = assetDetailModelOld?.assetStatus ?? ""
+            tfSeriNumber.text = assetDetailModelOld?.seriNumber ?? ""
+            tfPrice.text = "\(String(describing: assetDetailModelOld?.price ?? 0.0))"
+            tfNote.text = assetDetailModelOld?.note ?? ""
+            tfDateUpdate.text = assetDetailModelOld?.dateUpdate.toString(dateFormat: Constants.Strings.dateFormat)
+            tfDatePurchase.text = assetDetailModelOld?.dateOfPurchase.toString(dateFormat: Constants.Strings.dateFormat)
+            uuidAsset = assetDetailModelOld?.uuid ?? ""
+            ivAsset.image = ImageLocalManger.shared.getItem(.ImageAssets, assetDetailModelOld?.imageAsset ?? "")
+            
+        case .Delete: break
         }
+        
         lbBarCode.text = uuidAsset
         lbQRCode.text = uuidAsset
         ivBarCode.image = generateBarcode(from: uuidAsset)
@@ -181,12 +292,14 @@ private extension CreateAssetDetailViewController {
     
     func setupNavigation() {
         rightBarButtonItem = UIBarButtonItem(title: Translate.Shared.save(), style: .plain, target: self, action: #selector(tappedToSave))
-        if type == .Create {
-            title = Translate.Shared.create_asset()
-        } else if type == .Update {
-            title = Translate.Shared.asset_update()
+        switch type {
+        case .Read:
+            title = type.name()
+        default:
+            title = type.name()
+            navigationItem.rightBarButtonItem = rightBarButtonItem
         }
-        navigationItem.rightBarButtonItem = rightBarButtonItem
+        
     }
     
     func setupScrollView() {
@@ -224,8 +337,13 @@ private extension CreateAssetDetailViewController {
     func setupViewContent() {
         setupImageViewAsset()
         setupTextFieldName()
-        
-        
+        setupTextFieldLabel()
+        setupTextFieldSeriNumber()
+        setupTextFieldAssetStatus()
+        setupTextFieldNote()
+        setupTextFieldPrice()
+        setupTextFieldDatePurchase()
+        setupTextFieldDateUpdate()
         setupImageViewBarCode()
         setupImageViewQRcode()
     }
@@ -259,9 +377,73 @@ private extension CreateAssetDetailViewController {
             tfName.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -30.adjusted),
             tfName.heightAnchor.constraint(equalToConstant: 50.adjusted)
         ])
-        
     }
     
+    func setupTextFieldLabel() {
+        stackView.addArrangedSubview(tfLabel)
+        NSLayoutConstraint.activate([
+            tfLabel.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 30.adjusted),
+            tfLabel.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -30.adjusted),
+            tfLabel.heightAnchor.constraint(equalToConstant: 50.adjusted)
+        ])
+
+    }
+    
+    func setupTextFieldSeriNumber() {
+        stackView.addArrangedSubview(tfSeriNumber)
+        NSLayoutConstraint.activate([
+            tfSeriNumber.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 30.adjusted),
+            tfSeriNumber.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -30.adjusted),
+            tfSeriNumber.heightAnchor.constraint(equalToConstant: 50.adjusted)
+        ])
+    }
+    
+    func setupTextFieldAssetStatus() {
+        stackView.addArrangedSubview(tfAssetStatus)
+        NSLayoutConstraint.activate([
+            tfAssetStatus.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 30.adjusted),
+            tfAssetStatus.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -30.adjusted),
+            tfAssetStatus.heightAnchor.constraint(equalToConstant: 50.adjusted)
+        ])
+    }
+    
+    func setupTextFieldNote() {
+        stackView.addArrangedSubview(tfNote)
+        NSLayoutConstraint.activate([
+            tfNote.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 30.adjusted),
+            tfNote.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -30.adjusted),
+            tfNote.heightAnchor.constraint(equalToConstant: 50.adjusted)
+        ])
+    }
+    
+    func setupTextFieldPrice() {
+        stackView.addArrangedSubview(tfPrice)
+        NSLayoutConstraint.activate([
+            tfPrice.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 30.adjusted),
+            tfPrice.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -30.adjusted),
+            tfPrice.heightAnchor.constraint(equalToConstant: 50.adjusted)
+        ])
+
+    }
+    
+    func setupTextFieldDatePurchase() {
+        stackView.addArrangedSubview(tfDatePurchase)
+        NSLayoutConstraint.activate([
+            tfDatePurchase.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 30.adjusted),
+            tfDatePurchase.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -30.adjusted),
+            tfDatePurchase.heightAnchor.constraint(equalToConstant: 50.adjusted)
+        ])
+
+    }
+    
+    func setupTextFieldDateUpdate() {
+        stackView.addArrangedSubview(tfDateUpdate)
+        NSLayoutConstraint.activate([
+            tfDateUpdate.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 30.adjusted),
+            tfDateUpdate.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -30.adjusted),
+            tfDateUpdate.heightAnchor.constraint(equalToConstant: 50.adjusted)
+        ])
+    }
     
     func setupImageViewBarCode() {
         stackView.addArrangedSubview(ivBarCode)
@@ -341,6 +523,10 @@ private extension CreateAssetDetailViewController {
         toolbar.sizeToFit()
         
         tfName.inputAccessoryView = toolbar
+        tfNote.inputAccessoryView = toolbar
+        tfLabel.inputAccessoryView = toolbar
+        tfPrice.inputAccessoryView = toolbar
+        tfSeriNumber.inputAccessoryView = toolbar
         
     }
 }

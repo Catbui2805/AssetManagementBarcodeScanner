@@ -60,7 +60,7 @@ class CategoryDetailViewController: UIViewController {
     
     @objc func tappedAddAsset() {
         let vc = CreateAssetDetailViewController()
-        vc.type = crudType
+        vc.type = .Create
         vc.categoryModel = categoryModel
         vc.assetDetailModelCurrent = { [weak self] item in
             self?.categoryDetailViewModel.addItem(item)
@@ -73,7 +73,6 @@ class CategoryDetailViewController: UIViewController {
     @objc func tappedOptionAction() {
         let alert = UIAlertController(title: Translate.Shared.options(), message: Translate.Shared.would_you_like_to_choise_some_options_edit() , preferredStyle: .actionSheet)
         let create = UIAlertAction(title: Translate.Shared.create_asset(), style: .default) { _ in
-            self.crudType = .Create
             self.tappedAddAsset()
         }
         
@@ -207,7 +206,11 @@ extension CategoryDetailViewController: UICollectionViewDelegate, UICollectionVi
         case .Create:
             return
         case .Read:
-            // todo item to view controller view detail
+            let vc = CreateAssetDetailViewController()
+            vc.assetDetailModelOld = item
+            vc.categoryModel = categoryModel
+            vc.type = .Read
+            navigationController?.pushViewController(vc, animated: true)
             return
         case .Update:
             let vc = CreateAssetDetailViewController()

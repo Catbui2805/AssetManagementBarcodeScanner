@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Realm
+import RealmSwift
+import SkyFloatingLabelTextField
 
 class CreateBarQRCodeViewController: UIViewController {
     
@@ -56,8 +59,6 @@ class CreateBarQRCodeViewController: UIViewController {
     private var ivBarCode: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.clipsToBounds = true
-        iv.layer.cornerRadius = 0.adjusted
         iv.image = UIImage(named: "ic_bar_default")
         iv.contentMode = .scaleAspectFill
         return iv
@@ -281,8 +282,7 @@ private extension CreateBarQRCodeViewController {
         stackView.addArrangedSubview(lbQRCode)
         NSLayoutConstraint.activate([
             ivBarCode.heightAnchor.constraint(equalToConstant: 100.adjusted),
-            ivBarCode.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 40.adjusted),
-            ivBarCode.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -40.adjusted)
+            ivBarCode.widthAnchor.constraint(equalToConstant: 100.adjusted)
         ])
     }
     

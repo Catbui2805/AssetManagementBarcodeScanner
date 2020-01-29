@@ -41,7 +41,7 @@ class AssetDetailModel: Object {
     @objc dynamic var name: String = ""
     @objc dynamic var label: String = ""
     @objc dynamic var seriNumber: String = ""
-    @objc dynamic var assetStatus: String = ""
+    @objc dynamic var assetStatus: String = AssetStatus.NORMAL.name()
     @objc dynamic var note: String = ""
     @objc dynamic var imageAsset: String = ""
     @objc dynamic var imageBarCode: String = ""

@@ -62,6 +62,7 @@ enum Constants {
         
     }
     enum Strings {
+        static let dateFormat = "dd-MM-yyyy"
         
     }
     enum Colors {

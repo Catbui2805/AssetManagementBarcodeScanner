@@ -10,6 +10,7 @@ import UIKit
 import SkyFloatingLabelTextField
 import RealmSwift
 import Realm
+import PDFGenerator
 
 class CreateAssetDetailViewController: UIViewController {
     
@@ -158,16 +159,16 @@ class CreateAssetDetailViewController: UIViewController {
         return iv
     }()
     
-    let lbBarCode = UILabel(frame: CGRect(x: 0, y: 0, width: Constants.Screen.screenWidth, height: 44))
+    let lbBarCode = UILabel()
     
-    let lbQRCode = UILabel(frame: CGRect(x: 0, y: 0, width: Constants.Screen.screenWidth, height: 44))
+    let lbQRCode = UILabel()
     
     var rightBarButtonItem = UIBarButtonItem()
     
     
     let dataAssetStatus: [AssetStatus] = [.NORMAL, .STOCK, .EXPLOITATION, .BROKEN, .NOTFOUND]
     
-    var uuidAsset: String = String(UUID().uuidString.prefix(8))
+    var uuidAsset: String = String(UUID().uuidString)
     var type: CRUDType = .Create
     var assetDetailModelCurrent: ((AssetDetailModel) -> Void)?
     var assetDetailModelOld: AssetDetailModel?
@@ -178,6 +179,8 @@ class CreateAssetDetailViewController: UIViewController {
         setupViews()
         
     }
+    
+    // MARK:  Action
     
     @objc func datePurchaseChange( datePicker: UIDatePicker) {
         let dateFormatter = DateFormatter()
@@ -258,11 +261,17 @@ class CreateAssetDetailViewController: UIViewController {
     }
     
     @objc func btShareAction() {
-        guard let item = assetDetailModelOld else { return }
-        let pdfCreator = PDFCreator(item, ivAsset.image, ivBarCode.image, ivQRCode.image)
-        let pdfData = pdfCreator.createAssetDetail()
-        let vc = UIActivityViewController(activityItems: [pdfData], applicationActivities: [])
-        present(vc, animated: true, completion: nil)
+        do {
+            let data = try PDFGenerator.generated(by: [stackView])
+            let vc = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+            vc.popoverPresentationController?.sourceView = self.view
+            vc.excludedActivityTypes = [ UIActivity.ActivityType.airDrop,
+                                         UIActivity.ActivityType.postToFacebook ]
+
+            present(vc, animated: true, completion: nil)
+        } catch let e {
+            print(e)
+        }
     }
 }
 
@@ -366,7 +375,7 @@ private extension CreateAssetDetailViewController {
         scrollView.keyboardDismissMode = .interactive
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard (_:)))
         scrollView.addGestureRecognizer(tapGesture)
-        scrollView.contentInset = .init(top: 40.adjusted, left: 0, bottom: 40.adjusted, right: 0)
+        scrollView.contentInset = .init(top: 0.adjusted, left: 0, bottom: 0.adjusted, right: 0)
         NSLayoutConstraint.activate([
             scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
@@ -390,7 +399,7 @@ private extension CreateAssetDetailViewController {
             stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+            stackView.widthAnchor.constraint(equalToConstant: view.bounds.width)
         ])
     }
     
@@ -417,15 +426,17 @@ private extension CreateAssetDetailViewController {
         viewImageAsset.addSubview(ivAsset)
         viewImageAsset.addSubview(btAddImage)
         NSLayoutConstraint.activate([
-            viewImageAsset.heightAnchor.constraint(equalToConstant: 160.adjusted),
+            viewImageAsset.heightAnchor.constraint(equalToConstant: 200.adjusted),
+            viewImageAsset.widthAnchor.constraint(equalToConstant: stackView.bounds.width),
+            
             btAddImage.centerXAnchor.constraint(equalTo: viewImageAsset.centerXAnchor),
-            btAddImage.topAnchor.constraint(equalTo: viewImageAsset.topAnchor),
+            btAddImage.topAnchor.constraint(equalTo: viewImageAsset.topAnchor, constant: 50.adjusted),
             btAddImage.heightAnchor.constraint(equalTo: viewImageAsset.heightAnchor),
             btAddImage.widthAnchor.constraint(equalTo: ivAsset.widthAnchor),
             
-            ivAsset.topAnchor.constraint(equalTo: viewImageAsset.topAnchor),
+            ivAsset.topAnchor.constraint(equalTo: viewImageAsset.topAnchor, constant: 50.adjusted),
             ivAsset.centerXAnchor.constraint(equalTo: viewImageAsset.centerXAnchor),
-            ivAsset.heightAnchor.constraint(equalToConstant: 140.adjusted),
+            ivAsset.heightAnchor.constraint(equalToConstant: 120.adjusted),
             ivAsset.widthAnchor.constraint(equalToConstant: 140.adjusted)
         ])
     }
@@ -446,7 +457,6 @@ private extension CreateAssetDetailViewController {
             tfLabel.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -30.adjusted),
             tfLabel.heightAnchor.constraint(equalToConstant: 50.adjusted)
         ])
-        
     }
     
     func setupTextFieldSeriNumber() {
@@ -483,7 +493,6 @@ private extension CreateAssetDetailViewController {
             tfPrice.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -30.adjusted),
             tfPrice.heightAnchor.constraint(equalToConstant: 50.adjusted)
         ])
-        
     }
     
     func setupTextFieldDatePurchase() {
@@ -493,7 +502,6 @@ private extension CreateAssetDetailViewController {
             tfDatePurchase.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -30.adjusted),
             tfDatePurchase.heightAnchor.constraint(equalToConstant: 50.adjusted)
         ])
-        
     }
     
     func setupTextFieldDateUpdate() {
@@ -510,12 +518,15 @@ private extension CreateAssetDetailViewController {
         lbBarCode.textAlignment = .center
         lbBarCode.numberOfLines = 0
         stackView.addArrangedSubview(lbBarCode)
-        
+        lbBarCode.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             ivBarCode.heightAnchor.constraint(equalToConstant: 100.adjusted),
             ivBarCode.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 40.adjusted),
-            ivBarCode.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -40.adjusted)
+            ivBarCode.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -40.adjusted),
             
+            lbBarCode.heightAnchor.constraint(equalToConstant: 44.adjusted),
+            lbBarCode.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 20.adjusted),
+            lbBarCode.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -20.adjusted)
         ])
     }
     
@@ -523,11 +534,23 @@ private extension CreateAssetDetailViewController {
         stackView.addArrangedSubview(ivQRCode)
         lbQRCode.textAlignment = .center
         lbQRCode.numberOfLines = 0
-        stackView.addArrangedSubview(lbQRCode)
+        let viewText = UIView()
+        viewText.translatesAutoresizingMaskIntoConstraints = false
+        lbQRCode.translatesAutoresizingMaskIntoConstraints = false
+        viewText.addSubview(lbQRCode)
+        stackView.addArrangedSubview(viewText)
         NSLayoutConstraint.activate([
-            ivBarCode.heightAnchor.constraint(equalToConstant: 100.adjusted),
-            ivBarCode.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 40.adjusted),
-            ivBarCode.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -40.adjusted)
+            lbQRCode.topAnchor.constraint(equalTo: viewText.topAnchor, constant: 0.adjusted),
+            lbQRCode.leadingAnchor.constraint(equalTo: viewText.leadingAnchor, constant: 20.adjusted),
+            lbQRCode.trailingAnchor.constraint(equalTo: viewText.trailingAnchor, constant: -20.adjusted),
+            lbQRCode.heightAnchor.constraint(equalToConstant: 44.adjusted),
+            viewText.heightAnchor.constraint(equalToConstant: 100.adjusted),
+            viewText.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 0.adjusted),
+            viewText.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 0.adjusted),
+            
+            ivQRCode.heightAnchor.constraint(equalToConstant: 100.adjusted),
+            ivQRCode.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 40.adjusted),
+            ivQRCode.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -40.adjusted)
         ])
     }
 }
@@ -620,5 +643,4 @@ extension CreateAssetDetailViewController: UIPickerViewDelegate, UIPickerViewDat
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         tfAssetStatus.text = dataAssetStatus[row].name()
     }
-    
 }

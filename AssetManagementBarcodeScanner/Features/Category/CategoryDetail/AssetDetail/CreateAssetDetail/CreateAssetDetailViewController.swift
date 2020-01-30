@@ -44,7 +44,7 @@ class CreateAssetDetailViewController: UIViewController {
         return bt
     }()
     
-    let tfName: SkyFloatingLabelTextField = {
+    private let tfName: SkyFloatingLabelTextField = {
         let tf = SkyFloatingLabelTextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.placeholder = Translate.Shared.name_category()
@@ -56,7 +56,7 @@ class CreateAssetDetailViewController: UIViewController {
         return tf
     }()
     
-    let tfLabel: SkyFloatingLabelTextField = {
+    private let tfLabel: SkyFloatingLabelTextField = {
         let tf = SkyFloatingLabelTextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.placeholder = "Label"
@@ -64,8 +64,7 @@ class CreateAssetDetailViewController: UIViewController {
         return tf
     }()
     
-    
-    let tfSeriNumber: SkyFloatingLabelTextField = {
+    private let tfSeriNumber: SkyFloatingLabelTextField = {
         let tf = SkyFloatingLabelTextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.placeholder = "Seri number"
@@ -76,18 +75,19 @@ class CreateAssetDetailViewController: UIViewController {
         return tf
     }()
     
-    let tfAssetStatus: SkyFloatingLabelTextField = {
+    private let tfAssetStatus: SkyFloatingLabelTextField = {
         let tf = SkyFloatingLabelTextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.title = "Asset status"
         tf.text = AssetStatus.NORMAL.name()
         tf.placeholder = "Asset status"
         tf.clipsToBounds = true
-//        tf.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         return tf
     }()
     
-    let tfNote: SkyFloatingLabelTextField = {
+    private let pkAssetStatus = UIPickerView()
+    
+    private let tfNote: SkyFloatingLabelTextField = {
         let tf = SkyFloatingLabelTextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.placeholder = "Notes"
@@ -96,7 +96,7 @@ class CreateAssetDetailViewController: UIViewController {
         return tf
     }()
     
-    let tfPrice: SkyFloatingLabelTextField = {
+    private let tfPrice: SkyFloatingLabelTextField = {
         let tf = SkyFloatingLabelTextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.placeholder = "Price"
@@ -106,27 +106,39 @@ class CreateAssetDetailViewController: UIViewController {
         return tf
     }()
     
-    let tfDatePurchase: SkyFloatingLabelTextField = {
+    private let tfDatePurchase: SkyFloatingLabelTextField = {
         let tf = SkyFloatingLabelTextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.placeholder = "Date purchase"
         tf.title = "Date purchase"
         tf.text = "\(Date().toString(dateFormat: Constants.Strings.dateFormat))"
-//        tf.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         return tf
     }()
     
-    let tfDateUpdate: SkyFloatingLabelTextField = {
+    private let tfDateUpdate: SkyFloatingLabelTextField = {
         let tf = SkyFloatingLabelTextField()
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.placeholder = "Date update"
         tf.title = "Date update"
         tf.text = "\(Date().toString(dateFormat: Constants.Strings.dateFormat))"
-//        tf.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         return tf
     }()
     
-    private var ivBarCode: UIImageView = {
+    private let dateUpdatePicker: UIDatePicker = {
+        let dp = UIDatePicker()
+        dp.datePickerMode = .date
+        dp.addTarget(self, action: #selector(dateUpdateChange(datePicker:)), for: .valueChanged)
+        return dp
+    }()
+    
+    private let datePurchasePicker: UIDatePicker = {
+        let dp = UIDatePicker()
+        dp.datePickerMode = .date
+        dp.addTarget(self, action: #selector(datePurchaseChange(datePicker:)), for: .valueChanged)
+        return dp
+    }()
+    
+    private let ivBarCode: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.clipsToBounds = true
@@ -153,6 +165,8 @@ class CreateAssetDetailViewController: UIViewController {
     var rightBarButtonItem = UIBarButtonItem()
     
     
+    let dataAssetStatus: [AssetStatus] = [.NORMAL, .STOCK, .EXPLOITATION, .BROKEN, .NOTFOUND]
+    
     var uuidAsset: String = String(UUID().uuidString.prefix(8))
     var type: CRUDType = .Create
     var assetDetailModelCurrent: ((AssetDetailModel) -> Void)?
@@ -165,12 +179,22 @@ class CreateAssetDetailViewController: UIViewController {
         
     }
     
+    @objc func datePurchaseChange( datePicker: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = Constants.Strings.dateFormat
+        let date = dateFormatter.string(from: datePicker.date)
+        tfDatePurchase.text = date
+    }
+    
+    @objc func dateUpdateChange( datePicker: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = Constants.Strings.dateFormat
+        let date = dateFormatter.string(from: datePicker.date)
+        tfDateUpdate.text = date
+    }
+    
     @objc func dismissKeyboard (_ sender: UITapGestureRecognizer) {
-        tfName.resignFirstResponder()
-        tfSeriNumber.resignFirstResponder()
-        tfNote.resignFirstResponder()
-        tfLabel.resignFirstResponder()
-        tfPrice.resignFirstResponder()
+        self.view.endEditing(true)
     }
     
     @objc func textFieldDidChange(_ textfield: SkyFloatingLabelTextField) {
@@ -254,6 +278,19 @@ private extension CreateAssetDetailViewController {
         setupTextFields()
         setupNavigation()
         preConditionsView()
+        setupDatePicker()
+        setupPickerAssetStatus()
+    }
+    
+    func setupPickerAssetStatus() {
+        pkAssetStatus.delegate = self
+        pkAssetStatus.dataSource = self
+        tfAssetStatus.inputView = pkAssetStatus
+    }
+    
+    func setupDatePicker() {
+        tfDateUpdate.inputView = dateUpdatePicker
+        tfDatePurchase.inputView = datePurchasePicker
     }
     
     func preConditionsView() {
@@ -409,7 +446,7 @@ private extension CreateAssetDetailViewController {
             tfLabel.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -30.adjusted),
             tfLabel.heightAnchor.constraint(equalToConstant: 50.adjusted)
         ])
-
+        
     }
     
     func setupTextFieldSeriNumber() {
@@ -446,7 +483,7 @@ private extension CreateAssetDetailViewController {
             tfPrice.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -30.adjusted),
             tfPrice.heightAnchor.constraint(equalToConstant: 50.adjusted)
         ])
-
+        
     }
     
     func setupTextFieldDatePurchase() {
@@ -456,7 +493,7 @@ private extension CreateAssetDetailViewController {
             tfDatePurchase.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -30.adjusted),
             tfDatePurchase.heightAnchor.constraint(equalToConstant: 50.adjusted)
         ])
-
+        
     }
     
     func setupTextFieldDateUpdate() {
@@ -493,7 +530,6 @@ private extension CreateAssetDetailViewController {
             ivBarCode.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -40.adjusted)
         ])
     }
-    
 }
 
 
@@ -540,8 +576,8 @@ private extension CreateAssetDetailViewController {
                                         target: nil,
                                         action: nil)
         
-        let saveButton = UIBarButtonItem(title: Translate.Shared.save(),
-                                         style: .done, target: self, action: #selector(tappedToSave))
+        let saveButton = UIBarButtonItem(title: Translate.Shared.done(),
+                                         style: .done, target: self, action: #selector(dismissKeyboard))
         toolbar.setItems([flexSpace, saveButton], animated: false)
         toolbar.sizeToFit()
         
@@ -550,7 +586,9 @@ private extension CreateAssetDetailViewController {
         tfLabel.inputAccessoryView = toolbar
         tfPrice.inputAccessoryView = toolbar
         tfSeriNumber.inputAccessoryView = toolbar
-        
+        tfDatePurchase.inputAccessoryView = toolbar
+        tfDateUpdate.inputAccessoryView = toolbar
+        tfAssetStatus.inputAccessoryView = toolbar
     }
 }
 
@@ -562,4 +600,25 @@ extension CreateAssetDetailViewController: UIImagePickerControllerDelegate, UINa
         dismiss(animated: true)
         ivAsset.image = image
     }
+}
+
+// MARK:  Get Asset status
+
+extension CreateAssetDetailViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return dataAssetStatus.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return dataAssetStatus[row].name()
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        tfAssetStatus.text = dataAssetStatus[row].name()
+    }
+    
 }

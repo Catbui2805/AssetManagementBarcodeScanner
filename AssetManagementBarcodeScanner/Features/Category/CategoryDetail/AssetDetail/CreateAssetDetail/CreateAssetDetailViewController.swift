@@ -228,17 +228,34 @@ class CreateAssetDetailViewController: UIViewController {
         let uuid = assetDetailModelOld?.uuid ?? uuidAsset
         let assetDetailModel = AssetDetailModel(uuid, name, tfLabel.text ?? "", seriNumber,
                                                 tfAssetStatus.text ?? AssetStatus.NORMAL.name(),
-                                                tfNote.text ?? "", uuid, uuid, uuid, Date(),
-                                                Double(tfPrice.text ?? "0")!, Date())
+                                                tfNote.text ?? "", uuid, uuid, uuid, datePurchasePicker.date,
+                                                Double(tfPrice.text ?? "0")!, dateUpdatePicker.date)
         guard let object = categoryModel else {
             return
         }
         if type == .Update {
+            let item = realm.object(ofType: AssetDetailModel.self, forPrimaryKey: uuid)
             try! realm.write {
-                realm.add(assetDetailModel, update: .all)
-                object.assets.append(assetDetailModel)
+                item?.name = name
+                item?.label = tfLabel.text ?? ""
+                item?.assetStatus = tfAssetStatus.text ?? AssetStatus.NORMAL.name()
+                item?.note = tfNote.text ?? ""
+                item?.imageAsset = uuid
+                item?.imageQRCode = uuid
+                item?.imageBarCode = uuid
+                item?.price = Double(tfPrice.text ?? "0") ?? Double(0)
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = Constants.Strings.dateFormat
+                if let date = tfDateUpdate.text {
+                    item?.dateUpdate = dateFormatter.date(from: "\(date)") ??
+                        dateUpdatePicker.date
+                }
+                if let date = tfDatePurchase.text {
+                    item?.dateOfPurchase = dateFormatter.date(from: "\(date)") ??
+                        datePurchasePicker.date
+                }
             }
-        } else {
+        } else if type == .Create {
             try! realm.write {
                 realm.add(assetDetailModel, update: .error)
                 object.assets.append(assetDetailModel)
@@ -249,7 +266,6 @@ class CreateAssetDetailViewController: UIViewController {
         }
         assetDetailModelCurrent?(assetDetailModel)
         navigationController?.popViewController(animated: true)
-        
     }
     
     @objc func tappedAddImage() {
@@ -266,8 +282,7 @@ class CreateAssetDetailViewController: UIViewController {
             let vc = UIActivityViewController(activityItems: [data], applicationActivities: nil)
             vc.popoverPresentationController?.sourceView = self.view
             vc.excludedActivityTypes = [ UIActivity.ActivityType.airDrop,
-                                         UIActivity.ActivityType.postToFacebook ]
-
+                                         UIActivity.ActivityType.postToFacebook]
             present(vc, animated: true, completion: nil)
         } catch let e {
             print(e)
@@ -299,7 +314,9 @@ private extension CreateAssetDetailViewController {
     
     func setupDatePicker() {
         tfDateUpdate.inputView = dateUpdatePicker
+        dateUpdatePicker.setDate(from: tfDateUpdate.text ?? "10-19-2020", format: Constants.Strings.dateFormat)
         tfDatePurchase.inputView = datePurchasePicker
+        datePurchasePicker.setDate(from: tfDatePurchase.text ?? "10-19-2020", format: Constants.Strings.dateFormat)
     }
     
     func preConditionsView() {
@@ -421,12 +438,12 @@ private extension CreateAssetDetailViewController {
         let viewImageAsset = UIView()
         stackView.addArrangedSubview(viewImageAsset)
         btAddImage.addTarget(self, action: #selector(tappedAddImage), for: .touchUpInside)
-        btAddImage.contentEdgeInsets = .init(top: 150.adjusted, left: 0, bottom: 0, right: 0)
+        btAddImage.contentEdgeInsets = .init(top: 100.adjusted, left: 0, bottom: 0, right: 0)
         viewImageAsset.translatesAutoresizingMaskIntoConstraints = false
         viewImageAsset.addSubview(ivAsset)
         viewImageAsset.addSubview(btAddImage)
         NSLayoutConstraint.activate([
-            viewImageAsset.heightAnchor.constraint(equalToConstant: 200.adjusted),
+            viewImageAsset.heightAnchor.constraint(equalToConstant: 240.adjusted),
             viewImageAsset.widthAnchor.constraint(equalToConstant: stackView.bounds.width),
             
             btAddImage.centerXAnchor.constraint(equalTo: viewImageAsset.centerXAnchor),
@@ -436,7 +453,7 @@ private extension CreateAssetDetailViewController {
             
             ivAsset.topAnchor.constraint(equalTo: viewImageAsset.topAnchor, constant: 50.adjusted),
             ivAsset.centerXAnchor.constraint(equalTo: viewImageAsset.centerXAnchor),
-            ivAsset.heightAnchor.constraint(equalToConstant: 120.adjusted),
+            ivAsset.heightAnchor.constraint(equalToConstant: 140.adjusted),
             ivAsset.widthAnchor.constraint(equalToConstant: 140.adjusted)
         ])
     }

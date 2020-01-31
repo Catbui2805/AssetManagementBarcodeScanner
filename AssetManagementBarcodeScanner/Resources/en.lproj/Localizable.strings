@@ -30,6 +30,7 @@
 "category_update" = "Category update";
 "asset_update" = "Asset update";
 "create_asset" = "Create asset";
+"share" = "Share";
 
 // scanner
 "scanner" = "Scanner";

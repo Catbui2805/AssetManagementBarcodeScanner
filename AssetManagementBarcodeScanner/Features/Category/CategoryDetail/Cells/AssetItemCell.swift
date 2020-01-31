@@ -93,7 +93,7 @@ class AssetItemCell: UICollectionViewCell {
         imageView.image = ImageLocalManger.shared.getItem(.ImageAssets, item.imageAsset)
         lbNameItem.text = item.name
         lbStatusItem.text =  item.assetStatus
-        lbdDateUpdate.text = item.dateUpdate.toString(dateFormat: "dd-MM-yyyy")
+        lbdDateUpdate.text = item.dateUpdate.toString(dateFormat: Constants.Strings.dateFormat)
     }
 }
 

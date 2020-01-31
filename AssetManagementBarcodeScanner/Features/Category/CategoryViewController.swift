@@ -39,6 +39,21 @@ class CategoryViewController: UIViewController {
         return bt
     }()
     
+    private let btCreateCategory: UIButton = {
+        let bt = UIButton()
+        bt.translatesAutoresizingMaskIntoConstraints = false
+        var image = UIImage(named: "ic_plus")
+        let tinteImage = image?.withRenderingMode(.alwaysTemplate)
+        bt.setImage(tinteImage, for: .normal)
+        bt.tintColor = .white
+        bt.setTitle("", for: .normal)
+        bt.titleLabel?.font = Constants.Fonts.regular16
+        bt.backgroundColor = .red
+        bt.layer.masksToBounds = true
+        bt.layer.cornerRadius = 44.adjusted / 2
+        return bt
+    }()
+    
     var rightBarButtonItem = UIBarButtonItem()
     
     var shouldEdit: Bool = false
@@ -56,9 +71,11 @@ class CategoryViewController: UIViewController {
         if categoryViewModel.getNumberOfCategories() < 1 {
             cvCategories.isHidden = true
             btAddCategory.isHidden = false
+            btCreateCategory.isHidden = true
         } else {
             cvCategories.isHidden = false
             btAddCategory.isHidden = true
+            btCreateCategory.isHidden = false
         }
     }
     
@@ -96,6 +113,7 @@ private extension CategoryViewController {
         setupNavigation()
         setupCollectionViewCategory()
         setupButtonAddCategory()
+        setupButtonCeateCategory()
     }
     
     func configureView() {
@@ -108,10 +126,12 @@ private extension CategoryViewController {
         if categoryViewModel.getNumberOfCategories() < 1 {
             cvCategories.isHidden = true
             btAddCategory.isHidden = false
+            btCreateCategory.isHidden = true
             shouldEdit = false
         } else {
             cvCategories.isHidden = false
             btAddCategory.isHidden = true
+            btCreateCategory.isHidden = false
         }
     }
     
@@ -124,6 +144,18 @@ private extension CategoryViewController {
         view.addSubview(cvCategories)
         cvCategories.contentInset = .init(top: 40.adjusted, left: 20.adjusted, bottom: 40.adjusted, right: 20.adjusted)
         cvCategories.frame = view.frame
+    }
+    
+    func setupButtonCeateCategory() {
+        view.addSubview(btCreateCategory)
+        btCreateCategory.addTarget(self, action: #selector(tappedCreateCategory), for: .touchUpInside)
+        let heightTabBar = tabBarController?.tabBar.bounds.size.height ?? 49
+        NSLayoutConstraint.activate([
+            btCreateCategory.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -(20.adjusted + heightTabBar)),
+            btCreateCategory.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20.adjusted),
+            btCreateCategory.heightAnchor.constraint(equalToConstant: 44.adjusted),
+            btCreateCategory.widthAnchor.constraint(equalToConstant: 44.adjusted)
+        ])
     }
     
     func setupButtonAddCategory() {

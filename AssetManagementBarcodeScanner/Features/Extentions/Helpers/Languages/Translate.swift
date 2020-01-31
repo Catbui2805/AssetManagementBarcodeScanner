@@ -133,5 +133,9 @@ extension Translate {
         return "create".localized()
     }
     
+    func share() -> String {
+        return "share".localized()
+    }
+    
 }
 

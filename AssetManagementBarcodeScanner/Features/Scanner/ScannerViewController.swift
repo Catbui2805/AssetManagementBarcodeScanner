@@ -8,12 +8,40 @@
 
 import UIKit
 import AVFoundation
+import Realm
+import RealmSwift
+
+enum ScannerType {
+    case CHECKCODE
+    case READ
+    case CREATE
+    case UPDATE
+    case DELETE
+    case SHARE
+    
+    func name() -> String {
+        switch self {
+        case .CHECKCODE:
+            return "Check status asset"
+        case .READ:
+            return Translate.Shared.read()
+        case .CREATE:
+            return Translate.Shared.create()
+        case .UPDATE:
+            return Translate.Shared.update()
+        case .DELETE:
+            return Translate.Shared.delete()
+        case .SHARE:
+            return Translate.Shared.share()
+        }
+    }
+}
 
 class ScannerViewController: UIViewController {
     
     static let identifier: String = "ScannerViewController"
     
-    var messageLabel: UILabel = {
+    private let messageLabel: UILabel = {
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
         lb.font = .systemFont(ofSize: 22, weight: .semibold)
@@ -22,12 +50,9 @@ class ScannerViewController: UIViewController {
         return lb
     }()
     
-    
     var captureSession = AVCaptureSession()
-    
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     var qrCodeFrameView: UIView?
-    
     private let supportedCodeTypes = [AVMetadataObject.ObjectType.upce,
                                       AVMetadataObject.ObjectType.code39,
                                       AVMetadataObject.ObjectType.code39Mod43,
@@ -42,9 +67,13 @@ class ScannerViewController: UIViewController {
                                       AVMetadataObject.ObjectType.interleaved2of5,
                                       AVMetadataObject.ObjectType.qr]
     
+    var scannerType: ScannerType = .CHECKCODE
+    var categoryServices: CategoryServicesable!
+    
+    let realm = try! Realm()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        categoryServices = CategoryServices()
         setupViews()
         
         // Get the back-facing camera for capturing videos
@@ -111,22 +140,54 @@ class ScannerViewController: UIViewController {
             return
         }
         
-        let alertPrompt = UIAlertController(title: "Open App", message: "You're going to open \(decodedURL)", preferredStyle: .actionSheet)
-        let confirmAction = UIAlertAction(title: "Confirm", style: UIAlertAction.Style.default, handler: { (action) -> Void in
-            
-            if let url = URL(string: decodedURL) {
-                if UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.open(url)
+        // Search uuid in database
+        
+        
+        let alert = UIAlertController(title: Translate.Shared.scanner(), message: "You're going to open \(decodedURL)", preferredStyle: .actionSheet)
+
+        
+        if let item = realm.object(ofType: AssetDetailModel.self, forPrimaryKey: decodedURL){
+            let checkCode = UIAlertAction(title: "Update status asset", style: .default) { _ in
+                self.scannerType = .CHECKCODE
+                
+                try! self.realm.write {
+                    item.dateUpdate = Date()
                 }
             }
-        })
+            alert.addAction(checkCode)
+            
+            let read = UIAlertAction(title: Translate.Shared.read(), style: .default) { _ in
+                self.scannerType = .READ
+            }
+            alert.addAction(read)
+            
+            let update = UIAlertAction(title: Translate.Shared.edit(), style: .default) { _ in
+                self.scannerType = .UPDATE
+            }
+            alert.addAction(update)
+            
+            let delete = UIAlertAction(title: Translate.Shared.delete(), style: .default) { _ in
+                self.scannerType = .DELETE
+            }
+            alert.addAction(delete)
+            
+        } else {
+            let create = UIAlertAction(title: Translate.Shared.create_asset(), style: .default) { _ in
+                self.scannerType = .CREATE
+            }
+            alert.addAction(create)
+            
+        }
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
+        let share = UIAlertAction(title: Translate.Shared.share(), style: .default) { _ in
+            self.scannerType = .SHARE
+        }
         
-        alertPrompt.addAction(confirmAction)
-        alertPrompt.addAction(cancelAction)
+        let cancel = UIAlertAction(title: Translate.Shared.cancel(), style: .cancel, handler: nil)
         
-        present(alertPrompt, animated: true, completion: nil)
+        alert.addAction(share)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
     }
     private func updatePreviewLayer(layer: AVCaptureConnection, orientation: AVCaptureVideoOrientation) {
         layer.videoOrientation = orientation

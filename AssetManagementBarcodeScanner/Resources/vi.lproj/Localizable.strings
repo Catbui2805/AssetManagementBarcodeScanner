@@ -30,6 +30,7 @@
 "category_update" = "Thêm thông tin loại tài sản";
 "asset_update" = "Thêm thông tin tài sản";
 "create_asset" = "Tạo tài sản";
+"share" = "Chia sẻ";
 
 // scanner
 "scanner" = "Quét mã";

@@ -71,6 +71,9 @@ class ScannerViewController: UIViewController {
     var categoryServices: CategoryServicesable!
     
     let realm = try! Realm()
+    
+    var shouldScanner: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         categoryServices = CategoryServices()
@@ -125,6 +128,16 @@ class ScannerViewController: UIViewController {
             view.addSubview(qrCodeFrameView)
             view.bringSubviewToFront(qrCodeFrameView)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        shouldScanner = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        shouldScanner = false
     }
     
     override func didReceiveMemoryWarning() {
@@ -230,6 +243,7 @@ extension ScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         // Check if the metadataObjects array is not nil and it contains at least one object.
+        guard shouldScanner else { return }
         if metadataObjects.count == 0 {
             qrCodeFrameView?.frame = CGRect(x: 20, y: (view.bounds.height / 2) - 150, width: view.bounds.width - (20 * 2), height: 300)
             

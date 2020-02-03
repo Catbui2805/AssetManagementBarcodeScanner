@@ -307,7 +307,6 @@
 			isa = PBXGroup;
 			children = (
 				F59D563C23DD9322003A967B /* CreateAssetDetailViewController.swift */,
-				F59D560A23D9EC59003A967B /* UIColor+FromHex.swift */,
 				F5832C5923DF84E300EABA5D /* CreateBarQRCodeViewController.swift */,
 			);
 			path = CreateAssetDetail;
@@ -427,6 +426,7 @@
 				F5040D2623D960380087C1FD /* Views */,
 				F5D6185B23D6E16F00054D9F /* Constants.swift */,
 				F5040D2A23D963250087C1FD /* String+Localized.swift */,
+				F59D560A23D9EC59003A967B /* UIColor+FromHex.swift */,
 				F5832C5723DF5B0000EABA5D /* Date+ToString.swift */,
 				F5426E5023E3270200C0D3D4 /* String+ToDate.swift */,
 			);

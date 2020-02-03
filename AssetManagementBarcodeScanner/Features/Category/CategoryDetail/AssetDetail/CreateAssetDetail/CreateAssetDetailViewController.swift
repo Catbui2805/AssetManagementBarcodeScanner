@@ -230,9 +230,6 @@ class CreateAssetDetailViewController: UIViewController {
                                                 tfAssetStatus.text ?? AssetStatus.NORMAL.name(),
                                                 tfNote.text ?? "", uuid, uuid, uuid, datePurchasePicker.date,
                                                 Double(tfPrice.text ?? "0")!, dateUpdatePicker.date)
-        guard let object = categoryModel else {
-            return
-        }
         if type == .Update {
             let item = realm.object(ofType: AssetDetailModel.self, forPrimaryKey: uuid)
             try! realm.write {
@@ -256,6 +253,9 @@ class CreateAssetDetailViewController: UIViewController {
                 }
             }
         } else if type == .Create {
+            guard let object = categoryModel else {
+                return
+            }
             try! realm.write {
                 realm.add(assetDetailModel, update: .error)
                 object.assets.append(assetDetailModel)

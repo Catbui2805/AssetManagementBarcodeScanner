@@ -58,6 +58,8 @@ class CategoryViewController: UIViewController {
     
     var shouldEdit: Bool = false
     
+    var uuidAsset: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         categoryServices = CategoryServices()
@@ -222,10 +224,23 @@ extension CategoryViewController: UICollectionViewDelegate, UICollectionViewData
             alert.addAction(cancel)
             present(alert, animated: true, completion: nil)
         } else {
-            let vc = CategoryDetailViewController()
-            vc.hidesBottomBarWhenPushed = true
-            vc.categoryModel = categoryViewModel.getItem(indexPath.row)
-            navigationController?.pushViewController(vc, animated: true)
+            let categoryModel = categoryViewModel.getItem(indexPath.row)
+            if let uuid = uuidAsset {
+                let createAssetVC = CreateAssetDetailViewController()
+                createAssetVC.uuidAsset = uuid
+                createAssetVC.hidesBottomBarWhenPushed = true
+                createAssetVC.categoryModel = categoryModel
+                navigationController?.pushViewController(createAssetVC, animated: true)
+                guard let navigationController = self.navigationController else { return }
+                var navigationArray = navigationController.viewControllers
+                navigationArray.remove(at: navigationArray.count - 2) 
+                self.navigationController?.viewControllers = navigationArray
+            } else {
+                let vc = CategoryDetailViewController()
+                vc.hidesBottomBarWhenPushed = true
+                vc.categoryModel = categoryModel
+                navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
 }

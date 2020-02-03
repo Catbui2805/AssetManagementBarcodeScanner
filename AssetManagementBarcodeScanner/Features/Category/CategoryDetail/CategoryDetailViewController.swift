@@ -48,7 +48,7 @@ class CategoryDetailViewController: UIViewController {
     
     private var rightBarButton = UIBarButtonItem()
     
-    var crudType: CRUDType = .Read
+    var type: CRUDType = .Read
     var categoryModel: CategoryModel?
     private var categoryDetailViewModel: CategoryDetailViewModel!
     override func viewDidLoad() {
@@ -77,15 +77,15 @@ class CategoryDetailViewController: UIViewController {
         }
         
         let read = UIAlertAction(title: Translate.Shared.read(), style: .default) { _ in
-            self.crudType = .Read
+            self.type = .Read
         }
         
         let update = UIAlertAction(title: Translate.Shared.edit(), style: .default) { _ in
-            self.crudType = .Update
+            self.type = .Update
         }
         
         let delete = UIAlertAction(title: Translate.Shared.delete(), style: .default) { _ in
-            self.crudType = .Delete
+            self.type = .Delete
         }
         let cancel = UIAlertAction(title: Translate.Shared.cancel(), style: .cancel, handler: nil)
         
@@ -202,7 +202,7 @@ extension CategoryDetailViewController: UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let item = categoryDetailViewModel.getItem(indexPath.row)
         
-        switch crudType {
+        switch type {
         case .Create:
             return
         case .Read:

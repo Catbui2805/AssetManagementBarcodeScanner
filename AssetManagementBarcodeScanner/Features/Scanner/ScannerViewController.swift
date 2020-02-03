@@ -171,22 +171,46 @@ class ScannerViewController: UIViewController {
             
             let read = UIAlertAction(title: Translate.Shared.read(), style: .default) { _ in
                 self.scannerType = .READ
+                let vc = CreateAssetDetailViewController()
+                vc.type = .Read
+                vc.hidesBottomBarWhenPushed = true
+                vc.assetDetailModelOld = item
+                self.navigationController?.pushViewController(vc, animated: true)
             }
             alert.addAction(read)
             
             let update = UIAlertAction(title: Translate.Shared.edit(), style: .default) { _ in
                 self.scannerType = .UPDATE
+                let vc = CreateAssetDetailViewController()
+                vc.type = .Update
+                vc.hidesBottomBarWhenPushed = true
+                vc.assetDetailModelOld = item
+                self.navigationController?.pushViewController(vc, animated: true)
             }
             alert.addAction(update)
             
             let delete = UIAlertAction(title: Translate.Shared.delete(), style: .default) { _ in
                 self.scannerType = .DELETE
+                let alertCtr = UIAlertController(title: Translate.Shared.delete(), message: "\(item.uuid)", preferredStyle: .alert)
+                
+                let deleteAction = UIAlertAction(title: Translate.Shared.delete(), style: .destructive) { _ in
+                    DataManager.shared.delete(item)
+                }
+                let cancelAction = UIAlertAction(title: Translate.Shared.cancel(), style: .cancel, handler: nil)
+                
+                alertCtr.addAction(deleteAction)
+                alertCtr.addAction(cancelAction)
+                self.present(alertCtr, animated: true, completion: nil)
             }
             alert.addAction(delete)
             
         } else {
             let create = UIAlertAction(title: Translate.Shared.create_asset(), style: .default) { _ in
                 self.scannerType = .CREATE
+                let vc = CategoryViewController()
+                vc.uuidAsset = decodedURL
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
             }
             alert.addAction(create)
             
